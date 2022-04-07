@@ -2,5 +2,101 @@
     margin: 0px;
     padding: 0px;
     box-sizing: border-box;
-    background-color: black;
+    list-style: none;
 }
+
+body {
+    background-color: grey;
+}
+
+
+.header-project {
+    width: 100%;
+    height: 80px;
+    background-color: white;
+}
+
+/* Navbar */
+.nav-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0px 30px;
+}
+
+/* Logo home  */
+.logo {
+    display: flex;
+    height: 80px;
+    align-items: center;
+}
+#logo-layer-img {
+    width: 63px;
+    height: 65px;
+}
+
+.logo-text {
+    margin-left: 6px ;
+}
+
+#logo-text-osf {
+    width: 74px;   
+    height: 25px;
+    color: #011847;
+    font-family: "Lato - Extra Bold";
+    font-size: 32px;
+    font-weight: bold;
+    /* Text style for "O, SF" */
+    letter-spacing: 6.1px;
+    margin: 2px 0px;
+}
+
+#logo-text-academy {
+    width: 74px;    
+    height: 17px;
+    color: #84bc22;
+    font-size: 18px;
+    margin: 2px 0px;
+}
+
+/* ul-nav */
+.ul-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 518px;
+    height: 10px;
+    font-size: 14px;
+    color: #45413e;
+    font-weight: 600;
+}
+
+.caret-down {
+    margin-left: 8px;
+}
+
+.special-li {
+    opacity: 0.6;
+}
+
+/* Font icons */
+.icons {
+    width: 225px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+.icons i {
+    font-size: 18px;
+    display: flex;
+    width: 25px;
+    height: 25px;
+    align-items: center;
+    justify-content: center;
+    opacity: 0.6;
+
+}
+
+
+
