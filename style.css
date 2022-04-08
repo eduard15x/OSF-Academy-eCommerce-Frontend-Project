@@ -5,10 +5,19 @@
     list-style: none;
 }
 
-body {
-    background-color: grey;
+html {
+    background-color: whitesmoke;
 }
 
+body {
+    width: 1280px;
+    margin: 0 auto;
+    z-index: 10;
+}
+
+.osf-project {
+    width: 90%;
+}
 
 .header-project {
     width: 100%;
@@ -21,7 +30,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0px 30px;
+    padding: 0px;
 }
 
 /* Logo home  */
@@ -29,6 +38,7 @@ body {
     display: flex;
     height: 80px;
     align-items: center;
+    cursor: pointer;
 }
 #logo-layer-img {
     width: 63px;
@@ -62,41 +72,118 @@ body {
 /* ul-nav */
 .ul-nav {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 518px;
-    height: 10px;
+    width: 600px;
     font-size: 14px;
-    color: #45413e;
+    color: #534f4b;
     font-weight: 600;
+    padding-left: 50px;
+}
+
+.ul-nav li {
+    display: flex;
+    cursor: pointer;
+    height: 80px;
+    width: 110px;
+    align-items: center;
+    justify-content: center;
 }
 
 .caret-down {
     margin-left: 8px;
 }
 
-.special-li {
+.ul-nav .special-li {
     opacity: 0.6;
+    width: 80px;
 }
 
 /* Font icons */
 .icons {
-    width: 225px;
+    width: 260px;
     height: 30px;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 .icons i {
-    font-size: 18px;
+    font-size: 20px;
     display: flex;
     width: 25px;
     height: 25px;
     align-items: center;
     justify-content: center;
     opacity: 0.6;
+    cursor: pointer;
 
 }
 
 
 
+
+
+/* Hiden services-section for the products */
+.section-services-products {
+    display: flex;
+    width: 1280px;
+    height: 390px;
+    align-items: center;
+    justify-content: center;
+    background-color: #262a32;
+    padding: 0px 30px;
+}
+
+.services-products {
+    display: flex;
+    width: 870px;
+    font-size: 14px;
+    color: #ffffff;
+    font-family: "Lato - Extra Bold";
+}
+
+.services-products a {
+    text-decoration: none;
+    color: #cecaca;
+}
+
+.services-products a:hover {
+    text-decoration: none;
+    color: #ffffff;
+}
+
+.h3-products-title {
+    margin-bottom: 20px;
+}
+
+.products-categories {
+    width: 75%;
+}
+
+.products-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.products-list li {
+    width: 33.3%;
+}
+
+.products-list, .products-sale-list {
+    font-size: 16px;
+    line-height: 31px;
+}
+
+#services-products-photo {
+    width: 271px;
+    height: 276px;
+}
+
+
+.style-services-link {
+    background-color: #262a32;
+    color: #ffffff;
+    border-top: 15px solid white;
+    padding-bottom: 12px;
+    border-bottom: 3px solid #84bc22;
+    opacity: 1;
+    transition: 700ms;
+}
