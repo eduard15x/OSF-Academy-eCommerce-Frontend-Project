@@ -118,18 +118,17 @@ body {
 }
 
 
-
-
-
 /* Hiden services-section for the products */
 .section-services-products {
     display: flex;
+    position: absolute;
     width: 1280px;
-    height: 390px;
+    height: 380px;
     align-items: center;
     justify-content: center;
     background-color: #262a32;
     padding: 0px 30px;
+    z-index: 1;
 }
 
 .services-products {
@@ -186,4 +185,72 @@ body {
     border-bottom: 3px solid #84bc22;
     opacity: 1;
     transition: 700ms;
+}
+
+
+
+
+
+
+
+/* Footer */
+
+.footer-project {
+    display: flex;
+    background-color: white;
+    width: 100%;
+    height: 350px;
+    padding: 0px 40px;
+    padding-top: 40px;
+    justify-content: space-between;
+    line-height: 31px;
+    margin-top: 200px;
+}
+
+/* STYLE FOR EVERY p/li/a */
+.footer-project p, .footer-project li, .footer-project a {
+    text-decoration: none;
+    color: #45413e;
+    opacity: 0.8;
+}
+.footer-project a:hover {
+    color: #45413e;
+    opacity: 0.5;
+}
+
+/* H4 padding and sizing to align perfect */
+.footer-project h4 {
+    padding-bottom: 10px;
+}
+
+.col-three-footer, .col-four-footer {
+    padding-top: 41px;
+}
+
+/* COL-ONE */
+.col-one-footer {
+    line-height: 20px;
+    color: #45413e;
+}
+.col-one-footer p, .col-one-footer a {
+    color: #45413e;
+    opacity: 1;
+}
+
+
+/* COL-ONE -> COL-CONTACT */
+.col-contact-footer {
+    margin-top: 30px;
+}
+.col-contact-footer p {
+    margin-bottom: 12px;
+}
+
+/* COL-SIX - ICONS */
+.social-links-icons {
+    display: flex;
+}
+.social-links-icons li {
+    font-size: 16px;
+    margin: 0px 10px;
 }

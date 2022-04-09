@@ -8,6 +8,8 @@ const saleServicesProducts = [
 ]
 
 
+
+
 const productsList = document.querySelector('.products-list')
 const saleProductsList = document.querySelector('.products-sale-list')
 
@@ -15,7 +17,6 @@ const saleProductsList = document.querySelector('.products-sale-list')
 for (let i = 0; i < servicesProducts.length; i++) {
     productsList.innerHTML += `<li> <a href=""> ${servicesProducts[i]} </a> </li>`
 }
-
 for (let i = 0; i < saleServicesProducts.length; i++) {
     saleProductsList.innerHTML += `<li> <a href=""> ${saleServicesProducts[i]} </a> </li>`
 }
@@ -27,6 +28,7 @@ for (let i = 0; i < saleServicesProducts.length; i++) {
 const $btnServicesLinkNavbar = $('#services-navbar')
 const $sectionServicesProducts = $('.section-services-products')
 
+//Hiding the section
 $sectionServicesProducts.hide()
 
 $btnServicesLinkNavbar.on('click', ()=>{
@@ -34,3 +36,10 @@ $btnServicesLinkNavbar.on('click', ()=>{
     $sectionServicesProducts.toggle(700)
 })
 
+
+//Inject current year in the footer section
+let currentYear = new Date().getFullYear()
+
+const $spanYearFooter = $('#year-footer')
+
+$spanYearFooter.text(currentYear)
