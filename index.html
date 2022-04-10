@@ -38,7 +38,7 @@
 
             <div class="icons">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <i class="fa-regular fa-user"></i>
+                <i class="fa-regular fa-user" id="user-login-register"></i>
                 <i class="fa-regular fa-heart"></i>
                 <i class="fa-solid fa-bag-shopping"></i>
             </div>
@@ -66,6 +66,43 @@
             <img id="services-products-photo" src="/images/services-products-image/layer3.png">
         </div>
     </header>
+
+
+    <form class="form-login-box modal">
+        <h2>Sign in</h2>
+        <div>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="form-input-email">
+            <label for="password">Password <span id="forget-password">forget password</span> </label>
+            <input type="password" name="password" id="form-input-password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[#?!@$%^&*-\]\[]).{6,}" title="Password must contain at least 6 characters length, 1 number, 1 uppercase letter and 1 special character(symbol)" required>
+            <p><i class="far fa-eye" id="togglePassword" class="password"></i></p>
+        </div>
+        <button>LOGIN</button>
+        <p id="create-account">I don't have an account</p>
+    </form>
+    
+
+    <form class="form-create-account-box">
+        <h2>Register</h2>
+        <div>
+            <label for="fname">First name</label>
+            <input type="text" required>
+            <label for="lname">Last name</label>
+            <input type="text" required>
+            <label for="phone">Phone number</label>
+            <input type="tel" required>
+            <label for="email">Email</label>
+            <input type="email" required>
+            <label for="email">Password</label>
+            <input type="password" required>
+            <div class="check-policy">
+                <input type="checkbox" required>
+                <label>I agree with the terms of the OSF Subscriber Agreement and the OSF Digital Privacy Policy.</label>
+            </div>
+            
+        </div>
+        <button>Create account</button>
+    </form>
 
     
     
@@ -126,7 +163,7 @@
                 <li><a href="">About us</a></li>
                 <li><a href="">Delivery</a></li>
                 <li><a href="">Testimonials</a></li>
-                <li><a href="">CONTACT</a></li>
+                <li><a href="">Contact</a></li>
             </ul>
         </div>
         

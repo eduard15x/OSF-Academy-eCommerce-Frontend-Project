@@ -204,7 +204,7 @@ body {
     padding-top: 40px;
     justify-content: space-between;
     line-height: 31px;
-    margin-top: 200px;
+    margin-top: 300px;
 }
 
 /* STYLE FOR EVERY p/li/a */
@@ -254,3 +254,165 @@ body {
     font-size: 16px;
     margin: 0px 10px;
 }
+
+
+
+
+
+
+
+
+
+
+
+/* FORM LOGIN BOX */
+
+.form-login-box {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: 465px;
+    background-color: #ffffff;
+    align-items: center;
+    color: #45413e;
+    padding-top: 52px;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 50px;
+}
+
+.form-login-box h2 {
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.form-login-box div {
+    display: flex;
+    flex-direction: column;
+    width: 390px;
+    margin: 0px auto;
+}
+
+.form-login-box div label {
+    padding-top: 25px;
+    margin-bottom: 15px;
+    font-size: 14px;
+    font-weight: bolder;
+}
+
+.form-login-box div input {
+    padding: 0px 15px;
+    font-size: 14px;
+}
+
+#forget-password {
+    float: right;
+    color: #84bc22;
+    cursor: pointer;
+}
+
+#togglePassword {
+    float: right;
+    margin-top: -25px;
+    margin-right: 15px;
+    opacity: 0.8;
+    cursor: pointer;
+}
+
+#form-input-email, #form-input-password {
+    height: 35px;
+    border: 2px solid #d7d7d7;
+    border-radius: 25px;
+}
+
+.form-login-box button {
+    width: 181px;  
+    height: 36px;
+    border: none;
+    background-color: #84bc22;
+    border-radius: 25px;
+    margin-top: 55px;
+    margin-bottom: 25px;
+    color: #ffffff;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+#create-account {
+    color: #84bc22;
+    cursor: pointer;
+}
+
+
+
+
+/* FORM REGISTER  */
+.form-create-account-box {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: 465px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    margin-top: 50px;
+    border-radius: 10px;
+    align-items: center;
+    padding-top: 10px;
+    color: #45413e;
+}
+
+.form-create-account-box h2 {
+    font-size: 30px;
+}
+
+.form-create-account-box div {
+    display: flex;
+    flex-direction: column;
+    width: 350px;
+    margin-top: 10px;
+}
+
+.form-create-account-box .check-policy {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+.form-create-account-box .check-policy label {
+    margin-left: 15px;
+} 
+
+
+.form-create-account-box div label {
+    margin: 12px 0px 4px 0px;
+}
+
+.form-create-account-box div input {
+    height: 25px;
+    border-radius: 10px;
+    border: 2px solid #999999;
+    padding-left: 8px;
+    font-size: 14px;
+}
+
+.form-create-account-box button {
+    margin-top: 10px;
+    font-size: 14px;
+    padding: 7px 15px;
+    border-radius: 20px;
+    border: none;
+    background-color: #84bc22;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+
+
+
