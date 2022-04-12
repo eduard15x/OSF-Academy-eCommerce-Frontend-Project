@@ -19,9 +19,6 @@ a {
 }
 
 
-.osf-project {
-    width: 90%;
-}
 
 .header-project {
     position: fixed;
@@ -30,6 +27,7 @@ a {
     height: 80px;
     background-color: white;
     top: 0;
+    border-bottom: 1px solid gainsboro;
 }
 
 /* Navbar */
@@ -235,7 +233,6 @@ a {
     padding-top: 40px;
     justify-content: space-between;
     line-height: 31px;
-    margin-top: 250px;
 }
 
 /* STYLE FOR EVERY p/li/a */
@@ -297,9 +294,6 @@ a {
 
 
 /* FORM LOGIN BOX */
-
-
-
 .form-login-box {
     display: flex;
     flex-direction: column;
@@ -466,9 +460,11 @@ a {
     background-color: #f1edea;
     align-items: center;
     margin: 0px auto;
-    position: relative;
-    top: 80px;
+    padding-top: 80px;
+    height: 800px;
 }
+
+
 .non-product-404 a{
     text-decoration: none;
     color: #84bc22;
@@ -603,3 +599,223 @@ a {
     font-size: 22px;
 }
 
+
+
+
+/* SECTION HOME PAGE */
+main {
+    background-color: white;
+    padding-top: 15px;
+    padding-bottom: 20px;
+}
+
+/* SECTION ONE */
+.section-one-homepage {
+    display: flex;
+    margin-top: 105px;
+    justify-content: center;
+}
+
+.col-1-section-one-homepage, .col-2-section-one-homepage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.col-1-section-one-homepage {
+    background-color: #262a32;
+    border-radius: 10px;
+}
+
+.info-text-section-one-homepage {
+    position: absolute;
+    color: #ffffff;
+    margin-top: 70px;
+    margin-left: -140px;
+}
+
+#h1-col1-section-one {
+    /* Style for "Control an" */
+    width: 600px;
+    font-family: 'Lato';
+    font-size: 45px;
+    line-height: 130%;
+    margin-bottom: 100px;
+}
+
+#p-col1-section-one {
+    width: 350px;
+    font-size: 14px;
+    font-family: sans-serif;
+    margin-bottom: 45px;
+}
+
+#btn-col1-section-one {
+    color: #e7e7e7;
+    font-size: 14px;    
+    background-color: transparent;
+    padding: 10px 32px;
+    border: 2px solid #b5b5b5;
+    border-radius: 25px;
+}
+
+.list-buttons-section-one-homepage {
+    position:absolute;
+    margin-top: 450px;
+    display: flex;
+    margin-left: 20px;
+}
+
+.list-buttons-section-one-homepage li {
+    width: 8px;
+    height: 8px;
+    background-color: #bcbcbc;
+    border-radius: 50%;
+    margin: 0px 7px;
+}
+
+
+.col-2-section-one-homepage {
+    margin-left: 28px;
+}
+
+.col-2-section-one-homepage img {
+    border-radius: 10px;
+    margin-bottom: 40px;
+}
+
+#p1-col2-section-one {
+    color: #3d3835;
+    width: 200px;
+    font-size: 19px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+#p2-col2-section-one {
+    width: 200px;
+    color: #3d3835;
+    font-size: 14px;
+    text-align: center;
+    margin-bottom: 28px;
+}
+#btn-col2-section-one {
+    display: flex;
+    border: 2px solid #3a5b96;
+    color: #3a5b96;
+    font-weight: bold;
+    background-color: transparent;
+    border-radius: 25px;
+    padding: 10px 38px;
+    font-size: 14px;
+}
+#i-col2-section-one {
+    position: relative;
+    right: 20px;
+    font-weight: bold;
+}
+
+
+/* SECTION TWO */
+
+.section-two-popular-items {
+    display: flex;
+    flex-direction: column;
+    background-color: #4a4c86;
+    align-items: center;
+    margin: 0px auto;
+    padding-top: 80px;
+    padding-bottom: 50px;
+}
+
+.section-two-popular-items div {
+    display: flex;
+}
+
+#section-two-title {
+    color: #ffffff;
+    font-family: 'Lato';
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+#section-two-hr1, #section-two-hr2 {
+    border: 1px solid gainsboro;
+    width: 440px;
+    position: relative;
+    bottom: 55px;
+}
+
+#section-two-hr1 {
+    align-self: flex-start;
+    margin-left: 55px;
+}
+
+#section-two-hr2 {
+    align-self: flex-end;
+    margin-right: 55px;
+}
+
+
+.list-popular-items {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+    padding: 0 55px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.list-popular-items li {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 271px;
+    height: 360px;
+    border-radius: 5px;
+    background-color: white;
+    margin-bottom: 25px;
+}
+
+.list-popular-items li img {
+    width: 271px;
+    height: 261px;
+}
+
+.p-descr-list-popular-items {
+    display: flex;
+    align-items: center;
+    width: 228px;
+    height: 40px;
+    color: #45413e;
+    font-size: 16px;
+    text-align: center;
+    margin: 15px 0px;
+}
+
+.p-price-list-popular-items {
+    color: #45413e;
+    font-size: 16px;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+
+#btn-section-two-reload {
+    display: flex;
+    border: 2.5px solid #e8e2d6;
+    background-color: transparent;
+    border-radius: 20px;
+    color: #ffffff;
+    font-family: 'Lato';
+    font-size: 14px;
+    padding: 10px 80px;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+#reload-load-more {
+    position: absolute;
+    margin-left: 140px;
+}

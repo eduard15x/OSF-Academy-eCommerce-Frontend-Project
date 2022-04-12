@@ -13,10 +13,10 @@ const saleProductsList = document.querySelector('.products-sale-list')
 
 // Rendering all product items in the html
 for (let i = 0; i < servicesProducts.length; i++) {
-    productsList.innerHTML += `<li class="li-product-services"> <a href="#non-product-404-page"> ${servicesProducts[i]} </a> </li>`
+    productsList.innerHTML += `<li class="li-product-services"> <a href="#non-product-404-id"> ${servicesProducts[i]} </a> </li>`
 }
 for (let i = 0; i < saleServicesProducts.length; i++) {
-    saleProductsList.innerHTML += `<li class="li-product-services"> <a href="#non-product-404-page"> ${saleServicesProducts[i]} </a> </li>`
+    saleProductsList.innerHTML += `<li class="li-product-services"> <a href="#non-product-404-id"> ${saleServicesProducts[i]} </a> </li>`
 }
 
 
@@ -122,12 +122,12 @@ function keypressCloseModal(e) {
 
 
 
-const $nonProductSection = $('.non-product-404')
+const $nonProductSection = $('#non-product-404-id')
 $nonProductSection.hide()
 
 
 window.addEventListener("click",function(e) {
-    if (e.target.getAttribute('href') == "#non-product-404-page") {
+    if (e.target.getAttribute('href') == "#non-product-404-id") {
       console.log('da')
       $nonProductSection.show()
       $sectionServicesProducts.hide()
@@ -139,6 +139,44 @@ window.addEventListener("click",function(e) {
 
 
 
-
+//Giving every li the error page href
 const $links = $('li a')
-$links.attr('href', '#non-product-404-page')
+$links.attr('href', '#non-product-404-id')
+
+const $ulNavLinks = $('.ul-nav li a')
+$ulNavLinks.attr('href', '#')
+
+
+
+
+
+
+
+
+
+
+const $popularItemsList = $('.list-popular-items')
+
+
+
+$.getJSON('/data/popular-items.json', (products)=> {
+
+        $.each ( products, (i)=> {
+            console.log(products[i].productName + products[i].productPrice)
+
+            $popularItemsList.append(
+            `<li>
+            <img src="${products[i].src}">
+            <p class="p-descr-list-popular-items">${products[i].productName}</p>
+            <p class="p-price-list-popular-items">${products[i].productPrice}</p>
+            </li>`)
+        })
+    // $.each( products, (key , val)=> {
+    //     $popularItemsList.html(`<li>
+    //         <img src="${}">
+    //         <p class="p-descr-list-popular-items">${key}</p>
+    //         <p class="p-price-list-popular-items">${val}</p>
+    //     `)
+    // })
+});
+

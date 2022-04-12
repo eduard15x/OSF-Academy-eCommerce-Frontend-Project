@@ -1,0 +1,23 @@
+[
+    {
+        "src" : "/images/products/product1.png",
+        "productName" : "A",
+        "productPrice": 100
+    },
+    {
+        "src" : "/images/products/product1.png",
+        "productName" : "B",
+        "productPrice": 200
+    },
+    {
+        "src" : "/images/products/product1.png",
+        "productName" : "C",
+        "productPrice": 300
+    },
+    {
+        "src" : "/images/products/product1.png",
+        "productName" : "D",
+        "productPrice": 400
+    }
+]
+

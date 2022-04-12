@@ -16,8 +16,6 @@
 
 <body>
 
-   
-
     <header class="header-project">
         <nav class="nav-bar">
             <div class="logo">
@@ -28,7 +26,6 @@
                 </div>
             </div>
 
-            
             <ul class="ul-nav">
                 <li id="services-navbar" ><a>SERVICES <span class="caret-down"><i class="fa-solid fa-caret-down"></i></span> </a></li>
                 <li><a>COMPANY</a></li>
@@ -37,7 +34,6 @@
                 <li class="special-li"><a>EN<span class="caret-down"><i class="fa-solid fa-caret-down"></i></span></a></li>
                 <li class="special-li"><a>$US<span class="caret-down"><i class="fa-solid fa-caret-down"></i></span></a></li>
             </ul>
-            
 
             <div class="icons">
                 <i class="fa-solid fa-magnifying-glass"></i>
@@ -47,10 +43,10 @@
             </div>
         </nav>
 
-        <!-- THIS SECTION IS NOT DISPLAYED IN THE WEBSITE, IT IS SHOWN ONLY WHEN USER CLICK ON SERVICES-LINK FROM NAVBAR -->
+
+        <!-- THIS SECTION IS DISPLAYED ONLY WHEN USER CLICK ON SERVICES-LINK FROM NAVBAR -->
         <div class="section-services-products">
             <div class="services-products">
-                
                 <div class="products-categories">
                     <h3 class="h3-products-title">PRODUCTS CATEGORIES</h3>
                     <ul class="products-list">
@@ -71,6 +67,8 @@
     </header>
 
 
+
+    <!-- MODAL LOGIN / REGISTER BOX WHEN USER CLICK ON USER-ICON -->
     <div class="modal">
         <form class="form-login-box">
             <h2>Sign in</h2>
@@ -107,7 +105,10 @@
         </form>
     </div>
 
-    <div class="non-product-404">
+
+
+    <!-- NON PRODUCT PAGE WHEN USER CLICK ON A PRODUCT FROM SERVICES / FOOTER -->
+    <div class="non-product-404" id="non-product-404-id">
         <div class="non-product-subtitle">
             <p><a id="non-product-subtitle-link" href="#home">Home</a> <span id="subtitle-slash">/</span> <span>404</span></p>
         </div>
@@ -131,18 +132,79 @@
                 <p id="non-product-searchengine"><i class="fa-brands fa-searchengin"></i></p>
             </div>
         </div>
-
     </div>
 
     
 
-    
-    
+    <!-- HOME PAGE -->
+    <main>
+        <section class="section-one-homepage">
+            <div class="col-1-section-one-homepage">
+                <img src="/images/home-page-photos/layer3.png">
+
+                <div class="info-text-section-one-homepage">
+                    <h1 id="h1-col1-section-one"> Control and manage any device with cloud solutions </h1>
+                    <p id="p-col1-section-one"> Improve business performance and the user experience with the right mix of IoT technology and processes </p>
+                    <button id="btn-col1-section-one"> VIEW MORE </button>
+                    
+                </div>
+
+                <ul class="list-buttons-section-one-homepage">
+                    <li><a></a></li>
+                    <li><a></a></li>
+                    <li><a></a></li>
+                    <li><a></a></li>
+                    <li><a></a></li>
+                </ul>
+
+            </div>
+
+            <div class="col-2-section-one-homepage">
+                <img src="/images/home-page-photos/layer5.jpg">
+                <p id="p1-col2-section-one">Follow us on Facebook</p>
+                <p id="p2-col2-section-one">Sed ut perspiciatis unde omnis iste natur error sit</p>
+                <button id="btn-col2-section-one"> <i class="fa-brands fa-facebook-f" id="i-col2-section-one"></i> FOLLOW </button>
+            </div>
+        </section>
+
+
+        <section class="section-two-popular-items">
+
+            <h3 id="section-two-title">Popular items</h3>
+            <hr id="section-two-hr1">
+            <hr id="section-two-hr2">
+
+
+            <ul class="list-popular-items">
+                <!-- <li>
+                    <img src="/images/products/product1.png">
+                    <p class="p-descr-list-popular-items">this is a nice platform for trading</p>
+                    <p class="p-price-list-popular-items">$615.50</p>
+                </li>-->
+
+                <!-- THE ITEMS ARE ADDED BY A JSON FILE -->
+            </ul>
+            <button id="btn-section-two-reload">LOAD MORE <i class="fa-solid fa-rotate" id="reload-load-more"></i></button>
+        </section>
 
 
 
-    <footer class="footer-project">
+
         
+    </main>
+
+
+
+
+
+
+
+
+
+
+    
+    
+    <footer class="footer-project">
         <div class="col-one-footer">
             <div>
                 <p>&copy; Copyright <span id="year-footer"> JS YEAR </span><br>All Rights Reserved.</p>
@@ -157,7 +219,6 @@
                 <p><a href="mailto:contact@osf-global.com">contact@osf-global.com</a></p>
                 <p><a href="tel:+18885484344">+1 (888) 548-4344</a></p>
             </div>
-            
         </div>
 
         <div class="col-two-footer">
@@ -198,7 +259,6 @@
                 <li><a href="">Contact</a></li>
             </ul>
         </div>
-        
 
         <ul class="col-six-footer social-links-icons">
             <li><i class="fa-brands fa-facebook-f"></i></li>
