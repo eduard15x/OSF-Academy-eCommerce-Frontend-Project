@@ -9,6 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
 </head>
 
 
@@ -110,10 +111,10 @@
     <!-- NON PRODUCT PAGE WHEN USER CLICK ON A PRODUCT FROM SERVICES / FOOTER -->
     <div class="non-product-404" id="non-product-404-id">
         <div class="non-product-subtitle">
-            <p><a id="non-product-subtitle-link" href="#home">Home</a> <span id="subtitle-slash">/</span> <span>404</span></p>
+            <p><a class="non-product-subtitle-link" href="#home">Home</a> <span class="subtitle-slash">/</span> <a class="non-product-subtitle-link" id="osftheme-link" href="#osftheme">OSF Theme</a> <span class="subtitle-slash" id="osftheme-slash">/</span> <span id="span-subtitle"></span></p>
         </div>
 
-        <h1 id="non-product-title">404</h1>
+        <h1 id="non-product-title"></h1>
         <hr id="non-product-hr1">
         <hr id="non-product-hr2">
 
@@ -148,44 +149,163 @@
                     <button id="btn-col1-section-one"> VIEW MORE </button>
                     
                 </div>
-
                 <ul class="list-buttons-section-one-homepage">
-                    <li><a></a></li>
-                    <li><a></a></li>
-                    <li><a></a></li>
-                    <li><a></a></li>
-                    <li><a></a></li>
+                    <li><a><!-- js --></a></li>
+                    <li><a><!-- js --></a></li>
+                    <li><a><!-- js --></a></li>
+                    <li><a><!-- js --></a></li>
+                    <li><a><!-- js --></a></li>
                 </ul>
-
             </div>
 
             <div class="col-2-section-one-homepage">
                 <img src="/images/home-page-photos/layer5.jpg">
                 <p id="p1-col2-section-one">Follow us on Facebook</p>
                 <p id="p2-col2-section-one">Sed ut perspiciatis unde omnis iste natur error sit</p>
-                <button id="btn-col2-section-one"> <i class="fa-brands fa-facebook-f" id="i-col2-section-one"></i> FOLLOW </button>
+                <button id="btn-col2-section-one"> <a href="https://www.facebook.com" target="_blank"><i class="fa-brands fa-facebook-f" id="i-col2-section-one"></i> FOLLOW </a></button>
             </div>
         </section>
 
 
-        <section class="section-two-popular-items">
-            <h3 id="section-two-title">Popular items</h3>
-            <hr id="section-two-hr1">
-            <hr id="section-two-hr2">
 
+
+
+
+
+        <div class="section-specific-products">
+            <div class="section-specific-product-details">
+                <img id="section-specific-product-main-image" src="/images/products/specific product/specificblack1.jpg">
+                <i class="fa-solid fa-maximize" id="maximize-product-image"></i>
+                
+                <div class="section-specific-product-images">
+                    <img class="specific-product-small-image" src="/images/products/specific product/specificblackS1.jpg">
+                    <img class="specific-product-small-image" src="/images/products/specific product/specificblackS2.jpg">
+                    <img class="specific-product-small-image" src="/images/products/specific product/specificblueS1.jpg">
+                    <img class="specific-product-small-image" src="/images/products/specific product/specificblueS2.jpg">
+                </div>
+
+                <div class="section-details-for-specific-product">
+                    <h1>$300.99</h1>
+
+                    <select>
+                        <option>Dark Gray</option>
+                        <option>Light Blue</option>
+                    </select>
+
+                    <div class="specific-product-quantity">
+                        <input type="number" value="1">
+                        <p id="specific-product-quantity-operators"> <span><i class="fa-solid fa-minus"></i></span> <span><i class="fa-solid fa-plus"></i></span> </p>
+                        <button>ADD TO CART</button>
+                    </div>
+
+                    <p id="specific-product-descr">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore Beatae vitae dicta sunt explicabo. 
+                        Nemo enim ipsam voluptatem quia voluptas</p>
+
+                    <p id="specific-product-readmore"><a>Read more</a></p>
+
+                    <div class="section-specific-products-icons">
+                        <p>Share</p>
+                        <li><i class="fa-brands fa-facebook-f"></i></li>
+                        <li><i class="fa-brands fa-google-plus-g"></i></li>
+                        <li><i class="fa-brands fa-twitter"></i></li>
+                        <li><i class="fa-solid fa-p"></i></li>
+                    </div>
+                </div>
+            </div>
+
+            <div class="specific-product-different-tabs">
+                <div class="specific-product-subtitles">
+                    <p>Description</p>
+                    <p>Additional Information</p>
+                    <p>Reviews(3)</p>
+                </div>
+
+                <div class="specific-product-subtitles-descr">
+                    <p>Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+                        Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. </p>
+                    <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, 
+                        ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. </p>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+
+
+
+
+        <section class="section-two-popular-items">
+            
+            <div class="section-two-title-div">
+                <h3 id="section-two-title">Popular items</h3>
+                <hr id="section-two-hr1">
+                <hr id="section-two-hr2">
+            </div>
+
+            <div class="section-two-filters">
+                <div class="section-two-col-filter">
+                    <label>Price</label>
+                    <select>
+                        <option>$50-$150</option>
+                        <option>$150-$450</option>
+                    </select>
+                </div>
+                <div class="section-two-col-filter">
+                    <label>Brands</label>
+                    <select>
+                        <option>Adidas</option>
+                        <option>Nike</option>
+                    </select>
+                </div>
+                <div class="section-two-col-filter">
+                    <label>Size</label>
+                    <select>
+                        <option>Small</option>
+                        <option>Medium</option>
+                    </select>
+                </div>
+                <div class="section-two-col-filter">
+                    <label>Color</label>
+                    <div class="colors-filters">
+                        <input type="radio" id="white" name="color">
+                        <input type="radio" id="lightblue" name="color">
+                        <input type="radio" id="darkgrey" name="color">
+                        <input type="radio" id="green" name="color">
+                        <input type="radio" id="blue" name="color">
+                        <input type="radio" id="orange" name="color">
+                        <input type="radio" id="red" name="color">
+                    </div>
+                    
+                </div>
+                <div class="section-two-col-filter">
+                    <label>Sort by</label>
+                    <select>
+                        <option>Price</option>
+                        <option>Name</option>
+                    </select>
+                </div>
+                <div class="section-two-col-filter">
+                    <label>Show</label>
+                    <select>
+                        <option>8 per page</option>
+                        <option>16 per page</option>
+                    </select>
+                </div>
+            </div>
+            <p id="section-two-filters-products-results"><span id="nr-products-results">12,313 </span> results on list</p>
+            
 
             <ul class="list-popular-items">
-                <!-- <li>
-                    <img src="/images/products/product1.png">
-                    <p class="p-descr-list-popular-items">this is a nice platform for trading</p>
-                    <p class="p-price-list-popular-items">$615.50</p>
-                </li>-->
-
                 <!-- THE ITEMS ARE ADDED BY A JSON FILE -->
             </ul>
-            <button id="btn-section-two-reload">LOAD MORE <i class="fa-solid fa-rotate" id="reload-load-more"></i></button>
+            <button id="btn-section-two-load-more" class="btn-section-two">LOAD MORE <i class="fa-solid fa-rotate reload-load-more" ></i></button>
+            <button id="btn-section-two-minimize" class="btn-section-two">MINIMIZE <i class="fa-solid fa-rotate reload-load-more" ></i></button>
         </section>
 
+        
 
         <section class="section-three-banner">
             <img src="/images/home-page-photos/layer6.png">
@@ -194,6 +314,7 @@
                 <p>Sed ut perspiciatis unde omnis iste natus error sit volup tateem accusantium</p>
             </div>
         </section>
+
 
 
         <section class="section-four-featured-products">
@@ -212,28 +333,27 @@
 
             <ul class="list-featured-products">
                 <li>
-                    <img src="/images/products/product1.png">
+                    <img src="/images/products/popular/product1.png">
                     <p class="p-descr-list-featured-products">this is a nice platform for trading</p>
                     <p class="p-subtitle-list-featured-products">$615.50</p>
                 </li>
                 <li>
-                    <img src="/images/products/product1.png">
+                    <img src="/images/products/popular/product1.png">
                     <p class="p-descr-list-featured-products">this is a nice platform for trading</p>
                     <p class="p-subtitle-list-featured-products">$615.50</p>
                 </li>
                 <li>
-                    <img src="/images/products/product1.png">
+                    <img src="/images/products/popular/product1.png">
                     <p class="p-descr-list-featured-products">this is a nice platform for trading</p>
                     <p class="p-subtitle-list-featured-products">$615.50</p>
                 </li>
                 <li>
-                    <img src="/images/products/product1.png">
+                    <img src="/images/products/popular/product1.png">
                     <p class="p-descr-list-featured-products">this is a nice platform for trading</p>
                     <p class="p-subtitle-list-featured-products">$615.50</p>
                 </li>
             </ul>
         </section>
-
 
 
         <section class="section-five">
@@ -263,9 +383,10 @@
         </section>
 
 
-
         
+
     </main>
+
 
 
 

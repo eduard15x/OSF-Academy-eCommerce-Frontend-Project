@@ -35,19 +35,16 @@ $btnServicesLinkNavbar.on('click', ()=>{
     $sectionServicesProducts.toggle(700)
 })
 
-
 //Inject current year in the footer section
 let currentYear = new Date().getFullYear()
 const $spanYearFooter = $('#year-footer')
 $spanYearFooter.text(currentYear)
 
 
-
 //FORM LOGIN SECTION
 //Adding an event when click on user-login icon from navbar open the  Login pop-up
 const $formLoginSection = $('.form-login-box')
 const $userLoginIcon = $('#user-login-register');
-
 const $formInputPassword = $('#form-input-password')
 const $forgetPassword = $('#forget-password')
 const $togglePassword = $('#togglePassword')
@@ -121,62 +118,222 @@ function keypressCloseModal(e) {
 
 
 
-
-const $nonProductSection = $('#non-product-404-id')
-$nonProductSection.hide()
-
-
-window.addEventListener("click",function(e) {
-    if (e.target.getAttribute('href') == "#non-product-404-id") {
-      console.log('da')
-      $nonProductSection.show()
-      $sectionServicesProducts.hide()
-      $btnServicesLinkNavbar.removeClass('style-services-link')
-    } else if ( e.target.getAttribute('href') == "#home") {
-        $nonProductSection.hide()
-    }
-});
-
-
-
-//Giving every li the error page href
-const $links = $('li a')
-$links.attr('href', '#non-product-404-id')
-
-const $ulNavLinks = $('.ul-nav li a')
-$ulNavLinks.attr('href', '#')
-
-
-
-
-
-
-
-
-
+ 
 
 const $popularItemsList = $('.list-popular-items')
+const $btnLoadMoreProducts = $('#btn-section-two-load-more')
+const $btnMinimizeProducts = $('#btn-section-two-minimize')
 
+const $sectionOpenWhenClick = $('#non-product-404-id')
+const $sectionOops = $('#non-product-404-page')
+const $mainSection = $('main')
+const $sectionOneMain = $('.section-one-homepage')
+const $sectionTwoMain = $('.section-two-popular-items')
+const $sectionThreeMain = $('.section-three-banner')
+const $sectionFourMain = $('.section-four-featured-products')
+const $sectionFiveMain = $('.section-five')
+const $sectionTwoTitleDiv = $('.section-two-title-div')
+const $sectionFilters = $('.section-two-filters')
+const $sectionFiltersProductsResults = $('.section-two-p-products-results')
+const $btnSectionTwoPopularItems = $('.btn-section-two')
+const $sectionSpecificProducts = $('.section-specific-products')
+//small details
+const $titleRedirectPage = $('#non-product-title')
+const $hr1RedirectPage = $('#non-product-hr1')
+const $hr2RedirectPage = $('#non-product-hr2')
+const $spanSubtitleRedirectPage = $('#span-subtitle')
+const $paragraphFiltersProductsResults = $('#section-two-filters-products-results')
+const $sectionTwoTitlePopular = $('#section-two-title')
+const $sectionTwoHr1 = $('#section-two-hr1')
+const $sectionTwoHr2 = $('#section-two-hr2')
+const $OSFThemeLink = $('#osftheme-link')
+const $OSFThemeSlash = $('#osftheme-slash')
+
+//Default 
+$sectionOpenWhenClick.hide()
+$sectionFilters.hide()
+$paragraphFiltersProductsResults.hide()
+$sectionSpecificProducts.hide()
+$OSFThemeLink.hide()
+$OSFThemeSlash.hide()
+$btnMinimizeProducts.hide()
 
 
 $.getJSON('/data/popular-items.json', (products)=> {
-
-        $.each ( products, (i)=> {
-            console.log(products[i].productName + products[i].productPrice)
-
+    
+    function displayPopularItems(n) {
+        $popularItemsList.html('')
+        $.each ( products.slice(0, n), (i)=> {
+            //dislaying the first 8 products only 
             $popularItemsList.append(
             `<li>
-            <img src="${products[i].src}">
+            <img src="${products[i].src}" class="popular-items-image">
             <p class="p-descr-list-popular-items">${products[i].productName}</p>
             <p class="p-price-list-popular-items">${products[i].productPrice}</p>
-            </li>`)
+            </li>`);    
+            
+            let $pPrice = $('.p-price-list-popular-items')
+            $pPrice.hover( 
+                function() {
+                    $(this).removeClass('p-price-list-popular-items').addClass('mario').html(`<span id="span1">${products[i].productPrice}</span> <span id="border"></span> <span>BUY NOW</span>`)
+                }, 
+                function() {
+                    $(this).removeClass('mario').addClass('p-price-list-popular-items').html(`${products[i].productPrice}`)
+                }
+            )
         })
-    // $.each( products, (key , val)=> {
-    //     $popularItemsList.html(`<li>
-    //         <img src="${}">
-    //         <p class="p-descr-list-popular-items">${key}</p>
-    //         <p class="p-price-list-popular-items">${val}</p>
-    //     `)
-    // })
+    }
+
+
+    
+    //DISPLAY THE POPULAR ITEMS IN THE PAGE
+    displayPopularItems(8)
+    //CREATE BUTTON "LOAD MORE" TO DISPLAY 4 MORE PRODUCTS
+    $btnLoadMoreProducts.on('click', ()=>{
+        displayPopularItems(12)
+        //---
+        //CHANGING THE BUTTON LOAD MORE - > BUTTON MINIMIZE TO DISPLAY AGAIN ONLY 8 PRODUCTS
+        $btnLoadMoreProducts.hide()
+        $btnMinimizeProducts.show()
+        $btnMinimizeProducts.on('click', ()=> {
+            displayPopularItems(8)
+            $btnMinimizeProducts.hide()
+            $btnLoadMoreProducts.show()
+        } )
+        //---
+    })
+
+
+
+//targets for elements in page
+    window.addEventListener("click",function(e) {
+        if (e.target.getAttribute('href') === "#non-product-404-id") {
+            displaySection404Error()
+        } else if ( e.target.getAttribute('href') === "#home") {
+            displayHomePage()
+        } else if ( e.target.getAttribute('id') === "btn-col1-section-one") {
+            console.log('dada')
+            displaySectionCategoryServices()
+        } else if ( e.target.getAttribute('class') === "p-descr-list-popular-items"  || e.target.getAttribute('class') === "popular-items-image" ) {
+            console.log('hihihihihihi')
+            displaySpecificProduct()
+        } else if ( e.target.getAttribute('href') === '#osftheme') {
+            displaySectionCategoryServices()
+        }
+    });
+    
+
+
+
+    //Giving every li the error page href
+    //1
+    const $links = $('li a')
+    $links.attr('href', '#non-product-404-id')
+    //2
+    const $ulNavLinks = $('.ul-nav li a')
+    $ulNavLinks.attr('href', '#')
+    
+
+
+    //function to display standard home page
+    function displayHomePage() {
+        $sectionOpenWhenClick.hide()
+        $mainSection.show()
+        $sectionFilters.hide()
+        $sectionOneMain.show()
+        $sectionTwoMain.css({'background-color': '#262a32', 'margin-top': '30px', 'padding-top': '80px'})//rechange
+        $btnSectionTwoPopularItems.css({'background-color': 'transparent', 'margin-top': '30px', 'margin-bottom': '0px'})//rechange
+        $sectionTwoTitleDiv.show()
+        $sectionThreeMain.show()
+        $sectionFourMain.show()
+        $sectionFiveMain.show()
+        $paragraphFiltersProductsResults.hide()
+        $sectionSpecificProducts.hide()
+        $sectionTwoTitlePopular.css( {'color': '#ffffff', 'text-transform': 'capitalize'} )
+        $sectionTwoHr1.css('border-color', 'grey')
+        $sectionTwoHr2.css('border-color', 'grey')
+        $btnLoadMoreProducts.show()
+        $btnMinimizeProducts.hide()
+        displayPopularItems(8)
+    
+    }
+    
+    //function to display the 404 page
+    function displaySection404Error() {
+        console.log('da')
+        $sectionOpenWhenClick.show().css('padding-bottom', '35px')
+        $sectionServicesProducts.hide()
+        $btnServicesLinkNavbar.removeClass('style-services-link')
+        $titleRedirectPage.text('404')
+        $hr1RedirectPage.css('background-color', 'gainsboro') 
+        $hr2RedirectPage.css('background-color','gainsboro')
+        $spanSubtitleRedirectPage.text('404')
+        $sectionOops.show()
+        $mainSection.hide()
+        $OSFThemeLink.hide()
+        $OSFThemeSlash.hide()
+    }
+    
+    //function to display the landing services page
+    function displaySectionCategoryServices() {
+        $titleRedirectPage.text('Services')
+        $spanSubtitleRedirectPage.text('Category Landing Services')
+        $hr1RedirectPage.css({'background-color': 'whitesmoke', 'width':'400px'}) 
+        $hr2RedirectPage.css({'background-color': 'whitesmoke', 'width':'400px'})
+        $sectionOpenWhenClick.show().css('padding-bottom', '0px')
+        $sectionOops.hide()
+        $sectionFilters.show()
+        $sectionOneMain.hide()
+        $sectionTwoMain.css({'background-color': '#f1edea', 'margin-top': '0px', 'padding-top': '0px'})//rechange
+        $btnSectionTwoPopularItems.css({'background-color': '#84bc22', 'margin-top': '100px', 'margin-bottom': '40px'})//rechange
+        $sectionTwoTitleDiv.hide()
+        $sectionThreeMain.hide()
+        $sectionFourMain.show()
+        $sectionFiveMain.hide()
+        $paragraphFiltersProductsResults.show()
+        $OSFThemeLink.hide()
+        $OSFThemeSlash.hide()
+        $sectionSpecificProducts.hide()
+        displayPopularItems(12)
+        $btnLoadMoreProducts.hide()
+        $btnMinimizeProducts.show()
+        $btnMinimizeProducts.on('click', function(){
+            displayPopularItems(8)
+            $btnMinimizeProducts.hide()
+            $btnLoadMoreProducts.show()
+        })
+    }
+    
+    //function to display a specifig product 
+    function displaySpecificProduct() {
+        $titleRedirectPage.text('Archi Desk Accesories Pen Cup')
+        $spanSubtitleRedirectPage.text(`Archi Desk Accesories Pen Cup`)
+        $hr1RedirectPage.css({'background-color': 'gainsboro', 'width':'200px'}) 
+        $hr2RedirectPage.css({'background-color': 'gainsboro', 'width':'200px'})    
+        $sectionOpenWhenClick.show().css('padding-bottom', '0px')
+        $sectionOops.hide()
+        $sectionSpecificProducts.show()
+        $sectionOneMain.hide()
+        $sectionTwoMain.css({'background-color': '#f1edea', 'margin-top': '0px', 'padding-top': '55px'})//rechange
+        $sectionTwoTitleDiv.show()
+        $sectionTwoTitlePopular.css( {'color': '#45413e', 'text-transform': 'uppercase'} )
+        $sectionTwoHr1.css('border-color', 'gray')
+        $sectionTwoHr2.css('border-color', 'gray')
+        $btnSectionTwoPopularItems.css({'background-color': '#84bc22', 'margin-top': '100px', 'margin-bottom': '40px'})//rechange
+        $btnSectionTwoPopularItems.hide()
+        $sectionThreeMain.hide()
+        $sectionFourMain.hide()
+        $OSFThemeLink.show()
+        $OSFThemeSlash.show()
+        
+        $sectionFilters.hide()
+        $paragraphFiltersProductsResults.hide()
+        displayPopularItems(4)
+    }
+//end
 });
+
+
+
+
 
