@@ -158,9 +158,9 @@ $OSFThemeLink.hide()
 $OSFThemeSlash.hide()
 $btnMinimizeProducts.hide()
 
+let newArr = [];
 
 $.getJSON('/data/popular-items.json', (products)=> {
-    
     function displayPopularItems(n) {
         $popularItemsList.html('')
         $.each ( products.slice(0, n), (i)=> {
@@ -184,8 +184,6 @@ $.getJSON('/data/popular-items.json', (products)=> {
         })
     }
 
-
-    
     //DISPLAY THE POPULAR ITEMS IN THE PAGE
     displayPopularItems(8)
     //CREATE BUTTON "LOAD MORE" TO DISPLAY 4 MORE PRODUCTS
@@ -219,10 +217,14 @@ $.getJSON('/data/popular-items.json', (products)=> {
             displaySpecificProduct()
         } else if ( e.target.getAttribute('href') === '#osftheme') {
             displaySectionCategoryServices()
+        } else if ( e.target.getAttribute('class') === 'fa-solid fa-bag-shopping') {
+            displayShoppingCart()
         }
     });
     
 
+    
+    
 
 
     //Giving every li the error page href
@@ -241,6 +243,7 @@ $.getJSON('/data/popular-items.json', (products)=> {
         $mainSection.show()
         $sectionFilters.hide()
         $sectionOneMain.show()
+        $sectionTwoMain.show()
         $sectionTwoMain.css({'background-color': '#262a32', 'margin-top': '30px', 'padding-top': '80px'})//rechange
         $btnSectionTwoPopularItems.css({'background-color': 'transparent', 'margin-top': '30px', 'margin-bottom': '0px'})//rechange
         $sectionTwoTitleDiv.show()
@@ -324,12 +327,32 @@ $.getJSON('/data/popular-items.json', (products)=> {
         $sectionThreeMain.hide()
         $sectionFourMain.hide()
         $OSFThemeLink.show()
-        $OSFThemeSlash.show()
-        
+        $OSFThemeSlash.show()    
         $sectionFilters.hide()
         $paragraphFiltersProductsResults.hide()
         displayPopularItems(4)
     }
+
+
+
+    function displayShoppingCart() {
+        $titleRedirectPage.text('SHOPPING CART')
+        $spanSubtitleRedirectPage.text(`Shopping Cart`)
+        $hr1RedirectPage.css({'background-color': 'gainsboro', 'width':'360px'}) 
+        $hr2RedirectPage.css({'background-color': 'gainsboro', 'width':'360px'})    
+        $sectionOpenWhenClick.show().css('padding-bottom', '0px')
+        $sectionOops.hide()
+        $sectionOneMain.hide()
+        $sectionTwoMain.hide()
+        $sectionThreeMain.hide()
+        $sectionFourMain.hide()
+        $sectionFiveMain.hide()
+        $OSFThemeLink.hide()
+        $OSFThemeSlash.hide()  
+        $sectionSpecificProducts.hide()
+    }
+
+
 //end
 });
 
