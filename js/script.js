@@ -137,6 +137,7 @@ const $sectionFilters = $('.section-two-filters')
 const $sectionFiltersProductsResults = $('.section-two-p-products-results')
 const $btnSectionTwoPopularItems = $('.btn-section-two')
 const $sectionSpecificProducts = $('.section-specific-products')
+const $sectionShoppingCart = $('.section-shopping-cart')
 //small details
 const $titleRedirectPage = $('#non-product-title')
 const $hr1RedirectPage = $('#non-product-hr1')
@@ -157,6 +158,7 @@ $sectionSpecificProducts.hide()
 $OSFThemeLink.hide()
 $OSFThemeSlash.hide()
 $btnMinimizeProducts.hide()
+$sectionShoppingCart.hide()
 
 let newArr = [];
 
@@ -217,15 +219,12 @@ $.getJSON('/data/popular-items.json', (products)=> {
             displaySpecificProduct()
         } else if ( e.target.getAttribute('href') === '#osftheme') {
             displaySectionCategoryServices()
-        } else if ( e.target.getAttribute('class') === 'fa-solid fa-bag-shopping') {
+        } else if ( e.target.getAttribute('id') === 'shoppingcart') {
             displayShoppingCart()
+            $('.shopping-cart-items-added').show()
         }
     });
     
-
-    
-    
-
 
     //Giving every li the error page href
     //1
@@ -235,7 +234,6 @@ $.getJSON('/data/popular-items.json', (products)=> {
     const $ulNavLinks = $('.ul-nav li a')
     $ulNavLinks.attr('href', '#')
     
-
 
     //function to display standard home page
     function displayHomePage() {
@@ -257,6 +255,7 @@ $.getJSON('/data/popular-items.json', (products)=> {
         $sectionTwoHr2.css('border-color', 'grey')
         $btnLoadMoreProducts.show()
         $btnMinimizeProducts.hide()
+        $sectionShoppingCart.hide()
         displayPopularItems(8)
     
     }
@@ -275,6 +274,7 @@ $.getJSON('/data/popular-items.json', (products)=> {
         $mainSection.hide()
         $OSFThemeLink.hide()
         $OSFThemeSlash.hide()
+        $sectionShoppingCart.hide()
     }
     
     //function to display the landing services page
@@ -300,6 +300,7 @@ $.getJSON('/data/popular-items.json', (products)=> {
         displayPopularItems(12)
         $btnLoadMoreProducts.hide()
         $btnMinimizeProducts.show()
+        $sectionShoppingCart.hide()
         $btnMinimizeProducts.on('click', function(){
             displayPopularItems(8)
             $btnMinimizeProducts.hide()
@@ -330,12 +331,14 @@ $.getJSON('/data/popular-items.json', (products)=> {
         $OSFThemeSlash.show()    
         $sectionFilters.hide()
         $paragraphFiltersProductsResults.hide()
+        $sectionShoppingCart.hide()
         displayPopularItems(4)
     }
 
 
 
     function displayShoppingCart() {
+        $sectionShoppingCart.show()
         $titleRedirectPage.text('SHOPPING CART')
         $spanSubtitleRedirectPage.text(`Shopping Cart`)
         $hr1RedirectPage.css({'background-color': 'gainsboro', 'width':'360px'}) 
@@ -351,8 +354,6 @@ $.getJSON('/data/popular-items.json', (products)=> {
         $OSFThemeSlash.hide()  
         $sectionSpecificProducts.hide()
     }
-
-
 //end
 });
 
