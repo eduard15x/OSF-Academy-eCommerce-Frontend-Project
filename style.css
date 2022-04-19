@@ -18,7 +18,7 @@ a {
 
 .header-project {
     position: fixed;
-    z-index: 3;
+    z-index: 2;
     width: 1280px;
     height: 80px;
     background-color: white;
@@ -371,7 +371,7 @@ a {
     position: fixed;
     width: 100%;
     height: 100%;
-    z-index: 1;
+    z-index: 3;
     top: 0;
     left: 0;
     background-color: hsla(0, 0%, 0%, 0.75);
@@ -969,6 +969,7 @@ padding-bottom: 15px;
     height: 526px;
     margin-right: 33px;
 }
+
 #maximize-product-image {
     position: absolute;
     margin-top: 30px;
@@ -980,6 +981,19 @@ padding-bottom: 15px;
 #maximize-product-image:hover {
     color: #3c4827;
 }
+
+#minimize-product-image {
+    position: absolute;
+    font-size: 28px;
+    cursor: pointer;
+    margin-top: 20px;
+    left: 85px;
+    z-index: 4;
+}
+#minimize-product-image:hover {
+    color: #84bc22;
+}
+
 .section-specific-product-images {
     display: flex;
     flex-direction: column;
@@ -1318,4 +1332,57 @@ padding-bottom: 15px;
     font-weight: bold;
     font-size: 48px;
     margin-top: 50px;
+}
+
+
+/* COOKIES INTRO  */
+.section-cookies {
+    width: 1280px;
+    height: 150px;
+    background-color: #ffffff;
+    padding: 25px ;
+    position: fixed;
+    z-index: 99;
+    top: 50%;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+
+.section-cookies h2 {
+    color: #84bc22;
+    font-family: "Lato";
+    font-size: 16px;
+    margin-bottom: 25px;
+}
+#info-cookies {
+    color: #45413e;
+    font-size: 14px;
+    line-height: 24px;
+    width: 80%;
+}
+.section-cookies span a{
+    color: #84bc22;
+    cursor: pointer;
+    font-weight: bold;
+}
+#close-cookies {
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    top: 8px;
+    font-size: 22px;
+    font-weight: bold;
+}
+#accept-cookies {
+    cursor: pointer;
+    position: absolute;
+    right: 20px;
+    bottom: 17px;
+    width: 150px;
+    height: 37px;
+    background-color: #84bc22;
+    border: none;
+    border-radius: 20px;
+    color: #ffffff;
+    font-weight: bold;
 }

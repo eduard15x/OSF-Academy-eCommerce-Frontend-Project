@@ -104,7 +104,7 @@ function clickCloseModal(e) {
     if ( e.target === modal ) {
         $formLoginSection.hide()
         modal.style.display = 'none'
-        $('#oops').css('zIndex', 1)
+        $('#oops').css('z-index', '10')
     }
 }
 
@@ -112,7 +112,7 @@ function keypressCloseModal(e) {
     if ( e.key === 'Escape') {
         $formLoginSection.hide()
         modal.style.display = 'none'
-        $('#oops').css('zIndex', 1)
+        $('#oops').css('z-index', '10')
     }
 }
 
@@ -361,3 +361,51 @@ $.getJSON('/data/popular-items.json', (products)=> {
 
 
 
+
+//SECTION COOKIES -> X to hide section , ACCEPT to add cookies in local storage until you delete cache
+const $sectionCookies = $('.section-cookies')
+const $closeCookies = $('#close-cookies')
+const $acceptCookies = $('#accept-cookies')
+$sectionCookies.hide()
+
+setTimeout(function() {
+    if ( localStorage.getItem('cookies') === 'true') {
+        return
+    } else {
+        $sectionCookies.show()
+    }
+}, 5000)
+
+$closeCookies.on('click', ()=> {
+    $sectionCookies.hide()
+})
+
+$acceptCookies.on('click', ()=> {
+    localStorage.setItem('cookies', 'true')
+    $sectionCookies.hide()
+})
+
+
+
+
+
+
+
+//TASK 7.1 MAXIMIZE FULL WIDTH FOR IMAGE
+const $btnFullDisplayImage = $('#maximize-product-image')
+const $btnNormalImage = $('#minimize-product-image')
+const $mainSpecificProductImage = $('#section-specific-product-main-image')
+
+$btnNormalImage.hide()
+
+$btnFullDisplayImage.on('click', ()=> {
+    $mainSpecificProductImage.css({'width': '100%', 'height': 'auto', 'position': 'absolute', 'left': '0px', 'padding': '0px 55px', 'z-index': '4'})
+    $btnFullDisplayImage.hide()
+    $btnNormalImage.show()
+})
+
+$btnNormalImage.on('click', ()=> {
+    $btnNormalImage.hide()
+    $btnFullDisplayImage.show()
+    $mainSpecificProductImage.css({'width': '578px', 'height': '526px', 'position': 'relative', 'padding': '0px', 'z-index': '0'})
+})
