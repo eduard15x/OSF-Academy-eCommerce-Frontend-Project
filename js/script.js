@@ -204,6 +204,120 @@ $.getJSON('/data/popular-items.json', (products)=> {
     })
 
 
+    //TASK 5.4 FEATURED PRODUCTS - CHANGE SLIDES WITH PREV/NEXT BUTTONS and AUTO CHANGE 
+    const listFeaturedProducts = document.querySelector('.list-featured-products')
+    const btnPrevFeaturedProducts = document.querySelector('#btn-prev-featured-products')
+    const btnNextFeaturedProducts = document.querySelector('#btn-next-featured-products')
+    listFeaturedProducts.innerHTML = ''
+    let startFeaturedProduct = 0
+    let lengthForFeaturedProductCarousel = startFeaturedProduct + 4
+    
+    displayFeaturedProducts(startFeaturedProduct,lengthForFeaturedProductCarousel)
+
+    function displayFeaturedProducts(startFeaturedProduct, lengthForFeaturedProductCarousel) {
+
+        for ( let i = startFeaturedProduct; i < lengthForFeaturedProductCarousel; i++) {    
+            listFeaturedProducts.innerHTML += 
+            `
+                <li class="fade-featured-products">
+                    <img src="${products[i].src}">
+                    <p class="p-descr-list-featured-products">${products[i].productName}</p>
+                    <p class="p-subtitle-list-featured-products">${products[i].productPrice}</p>
+                </li>
+            `
+        }
+    }
+    //btn prev 
+    btnPrevFeaturedProducts.addEventListener('click', ()=>{
+        listFeaturedProducts.innerHTML = ''
+        if ( startFeaturedProduct === 0) {
+            startFeaturedProduct = 8
+            lengthForFeaturedProductCarousel = startFeaturedProduct + 4
+        } else {
+            startFeaturedProduct -= 4
+            lengthForFeaturedProductCarousel = startFeaturedProduct + 4
+        }
+        displayFeaturedProducts(startFeaturedProduct, lengthForFeaturedProductCarousel)
+    })
+    //btn next
+    btnNextFeaturedProducts.addEventListener('click', ()=> {
+        listFeaturedProducts.innerHTML = ''
+        if ( startFeaturedProduct === 8) {
+            startFeaturedProduct = 0
+            lengthForFeaturedProductCarousel = startFeaturedProduct + 4
+        } else {
+            startFeaturedProduct +=4;
+            lengthForFeaturedProductCarousel = startFeaturedProduct + 4
+            
+        }
+        displayFeaturedProducts(startFeaturedProduct, lengthForFeaturedProductCarousel)
+    })
+
+
+    //function to auto-change in carousel slides every 5 seconds
+    function autoChangeSlides() {
+        listFeaturedProducts.innerHTML = ''
+        if ( startFeaturedProduct === 8) {
+            startFeaturedProduct = 0
+            lengthForFeaturedProductCarousel = startFeaturedProduct + 4
+        } else {
+            startFeaturedProduct +=4;
+            lengthForFeaturedProductCarousel = startFeaturedProduct + 4
+        }
+        displayFeaturedProducts(startFeaturedProduct, lengthForFeaturedProductCarousel)
+        setTimeout(autoChangeSlides, 5000)
+    }
+    autoChangeSlides()
+    
+
+   // <ul class="list-featured-products">
+                // <li>
+                //     <img src="/images/products/popular/product1.png">
+                //     <p class="p-descr-list-featured-products">this is a nice platform for trading</p>
+                //     <p class="p-subtitle-list-featured-products">$615.50</p>
+                // </li>
+                // <li>
+                //     <img src="/images/products/popular/product1.png">
+                //     <p class="p-descr-list-featured-products">this is a nice platform for trading</p>
+                //     <p class="p-subtitle-list-featured-products">$615.50</p>
+                // </li>
+                // <li>
+                //     <img src="/images/products/popular/product1.png">
+                //     <p class="p-descr-list-featured-products">this is a nice platform for trading</p>
+                //     <p class="p-subtitle-list-featured-products">$615.50</p>
+                // </li>
+                // <li>
+                //     <img src="/images/products/popular/product1.png">
+                //     <p class="p-descr-list-featured-products">this is a nice platform for trading</p>
+                //     <p class="p-subtitle-list-featured-products">$615.50</p>
+                // </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 //targets for elements in page
     window.addEventListener("click",function(e) {
@@ -409,3 +523,72 @@ $btnNormalImage.on('click', ()=> {
     $btnFullDisplayImage.show()
     $mainSpecificProductImage.css({'width': '578px', 'height': '526px', 'position': 'relative', 'padding': '0px', 'z-index': '0'})
 })
+
+
+const mainSpecificProductImage = document.getElementById('section-specific-product-main-image')
+
+//ACTIVE STATE FOR SELECTED PHOTO AND REPLACE THE MAIN PHOTO WITH THE SELECTED ONE
+const sectionSmallImagesSpecificProduct = document.querySelector('.section-specific-product-images')
+const smallImages = sectionSmallImagesSpecificProduct.getElementsByClassName('specific-product-small-image')
+
+for ( let i = 0 ; i < smallImages.length; i ++) {
+    smallImages[i].addEventListener('click', ()=> {
+        console.log('dad')
+        let currentClass = document.getElementsByClassName('active-image')
+        if ( currentClass.length > 0) {
+            currentClass[0].className = currentClass[0].className.replace('active-image', '')
+        }
+        smallImages[i].className += " active-image";
+        $mainSpecificProductImage.attr('src', '').attr('src', `${smallImages[i].src}`)
+    })
+}
+
+
+
+//DISPLAY SPECIFIC TAB FOR SPECIFIC SUBTITLE DESCRIPTION / ADDITIONAL INFORMATION / REVIEW(3)
+
+// const currentTabProduct = document.getElementsByClassName('tab-product')
+// const currentSectionSpecificTab = document.querySelector('.specific-product-subtitles-descr')
+
+// for ( let i = 0; i < currentTabProduct.length; i ++) {
+//     currentTabProduct[i].addEventListener('click', ()=> {
+//         let currentTabSelected = document.querySelector('.current-tab-specific-product')
+//         currentTabSelected.className = currentTabSelected.className.replace('current-tab-specific-product', '')
+//         currentTabProduct[i].className += " current-tab-specific-product"
+//         displayDescription(i)
+//     })
+// }
+
+// function displayDescription(index) {
+//     currentSectionSpecificTab[index].html = 
+//     `
+//         <p>Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
+//             Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
+//         </p>
+//         <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, 
+//             ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. 
+//         </p>
+//     `
+// }
+
+// function displayAdditionalInfo(index) {
+//     currentSectionSpecificTab[index].html = 
+//     `
+//         <p>Er 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, 
+//             consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. 
+//             Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.
+//         <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum </p>
+//     `
+// }
+
+// function displayReviews(index) {
+//     currentSectionSpecificTab[index].html = 
+//     `
+//         <p>Michael: Very good! price-quality very balanced</p>
+//         <p>Johny: Good material</p>
+//         <p>Marry: I recommend this product to everyone!</p>
+//     `
+// }
+
+
+

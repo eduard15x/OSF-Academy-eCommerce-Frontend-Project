@@ -836,7 +836,7 @@ padding-bottom: 15px;
     flex-direction: column;
     align-items: center;
     background-color: #262a32;
-    height: 555px;
+    padding-bottom: 50px;
 }
 .section-four-title {
     color: #ffffff;
@@ -903,7 +903,7 @@ padding-bottom: 15px;
     border-radius: 8px 8px 0px 0px;
 }
 .p-descr-list-featured-products {
-    width: 151px;
+    width: 181px;
     height: 31px;
     font-family:Arial, Helvetica, sans-serif;
     color: #45413e;
@@ -918,6 +918,16 @@ padding-bottom: 15px;
     font-family: "Lato";
     font-size: 14px;
     text-align: center;
+}
+
+.fade-featured-products {
+    animation-name: fade;
+    animation-duration: 2s;
+}
+  
+@keyframes fade {
+    from {opacity: .4} 
+    to {opacity: 1}
 }
 
 
@@ -1004,8 +1014,14 @@ padding-bottom: 15px;
     height: 71px;
     margin-bottom: 24px;
     opacity: 0.5;
-    border: 1px solid #45413e;
+    border: 1px solid grey;
 }
+
+.active-image {
+    opacity: 1;
+    border: 2px solid #000000;
+}
+
 .section-details-for-specific-product {
     margin-top: 45px;
     margin-left: 70px;
@@ -1104,16 +1120,15 @@ padding-bottom: 15px;
     justify-content: center;
     background-color: #ffffff;
 }
-.specific-product-subtitles p {
+.tab-product {
     display: flex;
     align-items: center;
     font-size: 24px;
     margin: 0px 10px;
     padding: 0px 40px;
     font-family: "Lato";
-    color: #bdc3c7;
+    color: #adaeaf;
     height: 70px;
-    background-color: #262a33;
     border-radius: 15px 15px 0px 0px;
 }
 .specific-product-subtitles-descr {
@@ -1128,7 +1143,11 @@ padding-bottom: 15px;
     margin: 0px 50px;
 }
 
-
+.current-tab-specific-product {
+    display: flex;
+    background-color: #262a33;
+    color: #ffffff;
+}
 /* SHOPPING CART  */
 
 
