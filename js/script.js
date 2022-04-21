@@ -204,6 +204,82 @@ $.getJSON('/data/popular-items.json', (products)=> {
     })
 
 
+    //TASK 5.1 CAROUSEL BANNER - HOME PAGE 
+
+    const bannerImages = [ 
+        "/images/home-page-photos/layer1homepage.png",
+        "/images/home-page-photos/layer2homepage.png",
+        "/images/home-page-photos/layer3homepage.png"
+    ]
+
+    const imgHomepage = document.querySelector('#image-section-home-page')
+    const dotsHomepage = document.getElementsByClassName('dot-section-homepage')
+    const $infoTextHomepage = $('.info-text-section-one-homepage')
+
+
+    let slideIndexHomepage = 0
+    showSlideHomepage(slideIndexHomepage)
+
+    function currentSlideHomepage(n) {
+        showSlideHomepage(slideIndexHomepage = n)
+    }
+
+
+    function showSlideHomepage(n) {
+        if ( n > bannerImages.length) {
+            slideIndexHomepage = 0
+        }
+        if( n < 0) {
+            slideIndexHomepage = bannerImages.length
+        }
+        if ( n === 0 ) {
+            $infoTextHomepage.css({'align-items': 'flex-start', 'margin-left': '100px', 'margin-right': '0px', 'text-align': 'left'})
+        }
+        if ( n === 1 ) {
+            $infoTextHomepage.css({'align-items': 'center', 'margin-left': '0px', 'margin-right': '0px', 'text-align': 'center' })
+        }
+        if ( n === 2 ) {
+            $infoTextHomepage.css({'align-items': 'flex-end', 'margin-left': '0px', 'margin-right': '100px', 'text-align': 'right'})
+        }
+        for ( let i = 0; i < bannerImages.length; i ++) {
+            imgHomepage.src = bannerImages[i]
+        }
+        for ( let i = 0; i < dotsHomepage.length; i++) {
+            dotsHomepage[i].className = dotsHomepage[i].className.replace('dot-active', '')
+            dotsHomepage[i].addEventListener('click', ()=> {
+                currentSlideHomepage(i)
+            })
+        }
+        imgHomepage.src = bannerImages[slideIndexHomepage]
+        dotsHomepage[slideIndexHomepage].className += ' dot-active'
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     //TASK 5.4 FEATURED PRODUCTS - CHANGE SLIDES WITH PREV/NEXT BUTTONS and AUTO CHANGE 
     const listFeaturedProducts = document.querySelector('.list-featured-products')
     const btnPrevFeaturedProducts = document.querySelector('#btn-prev-featured-products')
