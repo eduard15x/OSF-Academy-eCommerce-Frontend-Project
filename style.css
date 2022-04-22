@@ -1032,6 +1032,7 @@ padding-bottom: 15px;
     margin-bottom: 24px;
     opacity: 0.5;
     border: 1px solid grey;
+    cursor: pointer;
 }
 
 .active-image {
@@ -1147,16 +1148,19 @@ padding-bottom: 15px;
     color: #adaeaf;
     height: 70px;
     border-radius: 15px 15px 0px 0px;
+    cursor: pointer;
 }
 .specific-product-subtitles-descr {
-    display: flex;
     background-color: #262a33;
     color: #ffffff;
     font-size: 16px;
     padding: 75px 0px;
     line-height: 24px;
 }
-.specific-product-subtitles-descr p {
+.xxx-section {
+    display: flex;
+}
+.xxx-section p {
     margin: 0px 50px;
 }
 

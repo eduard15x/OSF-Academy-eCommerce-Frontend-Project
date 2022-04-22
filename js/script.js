@@ -205,7 +205,6 @@ $.getJSON('/data/popular-items.json', (products)=> {
 
 
     //TASK 5.1 CAROUSEL BANNER - HOME PAGE 
-
     const bannerImages = [ 
         "/images/home-page-photos/layer1homepage.png",
         "/images/home-page-photos/layer2homepage.png",
@@ -254,27 +253,6 @@ $.getJSON('/data/popular-items.json', (products)=> {
         dotsHomepage[slideIndexHomepage].className += ' dot-active'
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -601,7 +579,8 @@ $btnNormalImage.on('click', ()=> {
 })
 
 
-const mainSpecificProductImage = document.getElementById('section-specific-product-main-image')
+
+
 
 //ACTIVE STATE FOR SELECTED PHOTO AND REPLACE THE MAIN PHOTO WITH THE SELECTED ONE
 const sectionSmallImagesSpecificProduct = document.querySelector('.section-specific-product-images')
@@ -622,49 +601,29 @@ for ( let i = 0 ; i < smallImages.length; i ++) {
 
 
 //DISPLAY SPECIFIC TAB FOR SPECIFIC SUBTITLE DESCRIPTION / ADDITIONAL INFORMATION / REVIEW(3)
+const currentTabProduct = document.getElementsByClassName('tab-product')
+const currentSectionSpecificTab = document.getElementsByClassName('xxx-section')
+let currentTabIndex = 0 
 
-// const currentTabProduct = document.getElementsByClassName('tab-product')
-// const currentSectionSpecificTab = document.querySelector('.specific-product-subtitles-descr')
-
-// for ( let i = 0; i < currentTabProduct.length; i ++) {
-//     currentTabProduct[i].addEventListener('click', ()=> {
-//         let currentTabSelected = document.querySelector('.current-tab-specific-product')
-//         currentTabSelected.className = currentTabSelected.className.replace('current-tab-specific-product', '')
-//         currentTabProduct[i].className += " current-tab-specific-product"
-//         displayDescription(i)
-//     })
-// }
-
-// function displayDescription(index) {
-//     currentSectionSpecificTab[index].html = 
-//     `
-//         <p>Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.
-//             Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. 
-//         </p>
-//         <p>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, 
-//             ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. 
-//         </p>
-//     `
-// }
-
-// function displayAdditionalInfo(index) {
-//     currentSectionSpecificTab[index].html = 
-//     `
-//         <p>Er 2000 years old. Richard McClintock, a Latin professor at Hampden-Sydney College in Virginia, looked up one of the more obscure Latin words, 
-//             consectetur, from a Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. 
-//             Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of "de Finibus Bonorum et Malorum" (The Extremes of Good and Evil) by Cicero, written in 45 BC.
-//         <p>The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum </p>
-//     `
-// }
-
-// function displayReviews(index) {
-//     currentSectionSpecificTab[index].html = 
-//     `
-//         <p>Michael: Very good! price-quality very balanced</p>
-//         <p>Johny: Good material</p>
-//         <p>Marry: I recommend this product to everyone!</p>
-//     `
-// }
+displayCurrentTab(currentTabIndex)
 
 
+function displayCurrentTab(x) {
+    for ( let i = 0 ; i < currentTabProduct.length; i++) {
+        currentTabProduct[i].className = currentTabProduct[i].className.replace('tab-product current-tab-specific-product', 'tab-product')
+        currentTabProduct[i].addEventListener('click', ()=> {
+            selectCurrentTab(i)
+        })
+    }
 
+    for ( let i = 0 ; i < currentSectionSpecificTab.length; i++) {
+        currentSectionSpecificTab[i].style.display = 'none'
+    }
+
+    currentTabProduct[x].className += ' current-tab-specific-product'
+    currentSectionSpecificTab[x].style.display = 'flex'
+}
+
+function selectCurrentTab(z) {
+    displayCurrentTab(currentTabIndex = z)
+}
