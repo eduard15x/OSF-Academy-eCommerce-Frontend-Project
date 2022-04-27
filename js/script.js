@@ -602,7 +602,7 @@ for ( let i = 0 ; i < smallImages.length; i ++) {
 
 //DISPLAY SPECIFIC TAB FOR SPECIFIC SUBTITLE DESCRIPTION / ADDITIONAL INFORMATION / REVIEW(3)
 const currentTabProduct = document.getElementsByClassName('tab-product')
-const currentSectionSpecificTab = document.getElementsByClassName('xxx-section')
+const currentSectionSpecificTab = document.getElementsByClassName('show-tab-section')
 let currentTabIndex = 0 
 
 displayCurrentTab(currentTabIndex)
