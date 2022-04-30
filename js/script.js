@@ -13,10 +13,10 @@ const saleProductsList = document.querySelector('.products-sale-list')
 
 // Rendering all product items in the html
 for (let i = 0; i < servicesProducts.length; i++) {
-    productsList.innerHTML += `<li class="li-product-services"> <a href="#non-product-404-id"> ${servicesProducts[i]} </a> </li>`
+    productsList.innerHTML += `<li class="li-product-services"><a>${servicesProducts[i]}</a></li>`
 }
 for (let i = 0; i < saleServicesProducts.length; i++) {
-    saleProductsList.innerHTML += `<li class="li-product-services"> <a href="#non-product-404-id"> ${saleServicesProducts[i]} </a> </li>`
+    saleProductsList.innerHTML += `<li class="li-product-services"><a>${saleServicesProducts[i]}</a></li>`
 }
 
 
@@ -116,10 +116,6 @@ function keypressCloseModal(e) {
     }
 }
 
-
-
- 
-
 const $popularItemsList = $('.list-popular-items')
 const $btnLoadMoreProducts = $('#btn-section-two-load-more')
 const $btnMinimizeProducts = $('#btn-section-two-minimize')
@@ -140,6 +136,11 @@ const $sectionSpecificProducts = $('.section-specific-products')
 const $sectionShoppingCart = $('.section-shopping-cart')
 //small details
 const $titleRedirectPage = $('#non-product-title')
+const $priceSpecificProduct = $('#specific-product-price')
+const $inputSpecificProductQuantity = $('#input-specific-product-quantity')
+const $decrementInputSpecificProductQuantiy = $('#decrement-input-specific-product-quantity')
+const $incrementInputSpecificProductQuantiy = $('#increment-input-specific-product-quantity')
+
 const $hr1RedirectPage = $('#non-product-hr1')
 const $hr2RedirectPage = $('#non-product-hr2')
 const $spanSubtitleRedirectPage = $('#span-subtitle')
@@ -160,7 +161,10 @@ $OSFThemeSlash.hide()
 $btnMinimizeProducts.hide()
 $sectionShoppingCart.hide()
 
-let newArr = [];
+let newArr = []; 
+
+let cartProductsList = []
+let wishlistProductsList = []
 
 $.getJSON('/data/popular-items.json', (products)=> {
     function displayPopularItems(n) {
@@ -168,10 +172,14 @@ $.getJSON('/data/popular-items.json', (products)=> {
         $.each ( products.slice(0, n), (i)=> {
             //dislaying the first 8 products only 
             $popularItemsList.append(
-            `<li>
-            <img src="${products[i].src}" class="popular-items-image">
-            <p class="p-descr-list-popular-items">${products[i].productName}</p>
-            <p class="p-price-list-popular-items">${products[i].productPrice}</p>
+            `<li class="li-item-product-from-ul">
+            <img src="${products[i].src}" class="popular-items-image" alt="${products[i].productName}" id="${products[i].productPrice}">
+            <button class="add-product-to add-to-cart" id="add-product-to-cart"> <i class="fa-solid fa-plus"></i> </button>
+            <button class="add-product-to add-to-wishlist" id="add-product-to-wishlist"> <i class="fa-solid fa-heart"></i> </button>
+            <div class="list-popular-items-div-details" id="${products[i].src}">
+                <p class="p-descr-list-popular-items" id="${products[i].productPrice}">${products[i].productName}</p>
+                <p class="p-price-list-popular-items">$ ${products[i].productPrice}</p>
+            </div>
             </li>`);    
             
             let $pPrice = $('.p-price-list-popular-items')
@@ -183,7 +191,148 @@ $.getJSON('/data/popular-items.json', (products)=> {
                     $(this).removeClass('mario').addClass('p-price-list-popular-items').html(`${products[i].productPrice}`)
                 }
             )
+
+            let $image = $('.popular-items-image')
+            let $detailsProduct = $('.list-popular-items-div-details')
+            let $buttonsAddProducts = $('.add-product-to')
+            $buttonsAddProducts.hide()
+            $image.hover(
+                ()=>{ 
+                    showButtons()
+                }
+                ,
+                ()=>{
+                    hideButtons()
+                }
+            )
+
+            $buttonsAddProducts.hover(
+                ()=>{ 
+                    showButtons()
+                }
+                ,
+                ()=>{
+                    hideButtons()
+                }
+            )
+
+            function showButtons() {
+                $buttonsAddProducts.show()
+                $image.css('opacity', '0.1'),
+                $detailsProduct.css('opacity', '0.1')
+            }
+
+            function hideButtons() {
+                $buttonsAddProducts.hide()
+                $image.css('opacity', '1'),
+                $detailsProduct.css('opacity', '1')
+            }
         })
+
+        //---------------
+        const btnAddProductToCart = document.getElementsByClassName('add-to-cart')
+        const btnAddProductToWishlist = document.getElementsByClassName('add-to-wishlist')
+       
+        const $quantityWishlistProducts = $('#quantity-wishlist-products')
+        const $quantityCartProducts = $('#quantity-cart-products')
+        $quantityWishlistProducts.html(`${wishlistProductsList.length}`)
+        $quantityCartProducts.html(`${cartProductsList.length}`)
+            
+
+        const ulShoppingCartAdded = document.querySelector('.shopping-cart-items-added')
+
+        for ( let i = 0 ; i < btnAddProductToCart.length; i++) {
+            //1---
+            btnAddProductToCart[i].addEventListener('click', ()=> {
+                cartProductsList.push( { src: products[i].src, productName: products[i].productName, productPrice: products[i].productPrice, quantity: products[i].quantity } )
+                console.log(cartProductsList)
+                
+                
+                let arrayCartNew = [...new Map(cartProductsList.map(item => [item.productName, item])).values()]
+                console.log(arrayCartNew)
+                $quantityCartProducts.html(arrayCartNew.length)
+
+                ulShoppingCartAdded.innerHTML = ''
+                for ( let i = 0 ; i < arrayCartNew.length; i++) {
+                    ulShoppingCartAdded.innerHTML += 
+                    `
+                    <li>
+                        <img src="${arrayCartNew[i].src}" class="img-items-added">
+                        <div class="shopping-cart-items-added-details-product">
+                            <p>${arrayCartNew[i].productName}</p>
+                            <p>$ ${arrayCartNew[i].productPrice}</p>
+                        </div>
+                        <input type="number" value="${arrayCartNew[i].quantity}" class="item-added-quantity">
+                        <p class="shopping-cart-quantity-operators"> <span class="decrement-quantity"><i class="fa-solid fa-minus "></i></span> <span class="increment-quantity"><i class="fa-solid fa-plus "></i></span> </p>
+                        <p class="item-added-price">$${arrayCartNew[i].productPrice},00</p>
+                        <button class="cart-delete-item-added">X</button>
+                    </li>
+                    `
+                    
+                }
+                changeQuantityOfProductsAdded()
+
+                //create function that changes quantity
+                function changeQuantityOfProductsAdded() {
+
+                    let subtotalPrice = 0
+                    let totalCartPrice = 0
+                    let cartInputProductQuantity = document.querySelectorAll('.item-added-quantity')
+                    let decrementCartProductQuantity = document.querySelectorAll('.decrement-quantity')
+                    let incrementCartProductQuantity = document.querySelectorAll('.increment-quantity')
+                    let productAddedTotalPrice = document.querySelectorAll('.item-added-price')
+                    let cartSubtotalPrice = document.getElementById('cart-subtotal-price')
+                    let cartTotalPrice = document.getElementById('total-price-shopping-cart')
+                    
+                    
+                    for ( let i = 0 ; i < arrayCartNew.length; i++) {
+                        //1
+                        incrementCartProductQuantity[i].addEventListener('click', ()=> {
+                            cartInputProductQuantity[i].value++;
+                            productAddedTotalPrice[i].textContent = ` $${cartInputProductQuantity[i].value * arrayCartNew[i].productPrice},00 `
+                        })
+                        //2
+                        decrementCartProductQuantity[i].addEventListener('click', ()=> {
+                            if (cartInputProductQuantity[i].value > 1) {
+                                cartInputProductQuantity[i].value--
+                                productAddedTotalPrice[i].textContent = ` $${cartInputProductQuantity[i].value * arrayCartNew[i].productPrice},00 `
+                            }
+                            
+                        })
+                        
+                        subtotalPrice += arrayCartNew[i].productPrice * cartInputProductQuantity[i].value
+                        cartSubtotalPrice.textContent = `$${subtotalPrice}`
+
+                        
+                    }
+
+                    let inputCartDelivery = document.querySelectorAll('.input-cart-delivery')
+                    for ( let i = 0; i < inputCartDelivery.length; i++) {
+                        inputCartDelivery[i].addEventListener('click', ()=> {
+                            if ( inputCartDelivery[i].checked ) {
+                                totalCartPrice = subtotalPrice + parseInt(inputCartDelivery[i].value)
+                                cartTotalPrice.textContent = `$${totalCartPrice}`
+                            }
+                        })
+                    }
+                }
+            })
+            //2---
+            btnAddProductToWishlist[i].addEventListener('click', ()=> {
+                wishlistProductsList.push( { productName: products[i].productName, productPrice: products[i].productPrice } )
+                console.log(wishlistProductsList)
+
+                let arrayWishlistNew = [...new Map(wishlistProductsList.map(item => [item.productName, item])).values()]
+                console.log(arrayWishlistNew)
+                $quantityWishlistProducts.html(arrayWishlistNew.length)
+            })
+        }
+
+
+
+
+
+
     }
 
     //DISPLAY THE POPULAR ITEMS IN THE PAGE
@@ -202,7 +351,6 @@ $.getJSON('/data/popular-items.json', (products)=> {
         } )
         //---
     })
-
 
     //TASK 5.1 CAROUSEL BANNER - HOME PAGE 
     const bannerImages = [ 
@@ -232,13 +380,13 @@ $.getJSON('/data/popular-items.json', (products)=> {
             slideIndexHomepage = bannerImages.length
         }
         if ( n === 0 ) {
-            $infoTextHomepage.css({'align-items': 'flex-start', 'margin-left': '100px', 'margin-right': '0px', 'text-align': 'left'})
+            $infoTextHomepage.css({'align-items': 'flex-start', 'margin-left': '25px', 'margin-right': '0px', 'text-align': 'left'})
         }
         if ( n === 1 ) {
             $infoTextHomepage.css({'align-items': 'center', 'margin-left': '0px', 'margin-right': '0px', 'text-align': 'center' })
         }
         if ( n === 2 ) {
-            $infoTextHomepage.css({'align-items': 'flex-end', 'margin-left': '0px', 'margin-right': '100px', 'text-align': 'right'})
+            $infoTextHomepage.css({'align-items': 'flex-end', 'margin-left': '0px', 'margin-right': '20px', 'text-align': 'right'})
         }
         for ( let i = 0; i < bannerImages.length; i ++) {
             imgHomepage.src = bannerImages[i]
@@ -253,8 +401,6 @@ $.getJSON('/data/popular-items.json', (products)=> {
         dotsHomepage[slideIndexHomepage].className += ' dot-active'
 
 }
-
-
 
 
 
@@ -276,11 +422,13 @@ $.getJSON('/data/popular-items.json', (products)=> {
                 <li class="fade-featured-products">
                     <img src="${products[i].src}">
                     <p class="p-descr-list-featured-products">${products[i].productName}</p>
-                    <p class="p-subtitle-list-featured-products">${products[i].productPrice}</p>
+                    <p class="p-subtitle-list-featured-products">$ ${products[i].productPrice}</p>
                 </li>
             `
         }
     }
+
+
     //btn prev 
     btnPrevFeaturedProducts.addEventListener('click', ()=>{
         listFeaturedProducts.innerHTML = ''
@@ -307,7 +455,6 @@ $.getJSON('/data/popular-items.json', (products)=> {
         displayFeaturedProducts(startFeaturedProduct, lengthForFeaturedProductCarousel)
     })
 
-
     //function to auto-change in carousel slides every 5 seconds
     function autoChangeSlides() {
         listFeaturedProducts.innerHTML = ''
@@ -323,55 +470,7 @@ $.getJSON('/data/popular-items.json', (products)=> {
     }
     autoChangeSlides()
     
-
-   // <ul class="list-featured-products">
-                // <li>
-                //     <img src="/images/products/popular/product1.png">
-                //     <p class="p-descr-list-featured-products">this is a nice platform for trading</p>
-                //     <p class="p-subtitle-list-featured-products">$615.50</p>
-                // </li>
-                // <li>
-                //     <img src="/images/products/popular/product1.png">
-                //     <p class="p-descr-list-featured-products">this is a nice platform for trading</p>
-                //     <p class="p-subtitle-list-featured-products">$615.50</p>
-                // </li>
-                // <li>
-                //     <img src="/images/products/popular/product1.png">
-                //     <p class="p-descr-list-featured-products">this is a nice platform for trading</p>
-                //     <p class="p-subtitle-list-featured-products">$615.50</p>
-                // </li>
-                // <li>
-                //     <img src="/images/products/popular/product1.png">
-                //     <p class="p-descr-list-featured-products">this is a nice platform for trading</p>
-                //     <p class="p-subtitle-list-featured-products">$615.50</p>
-                // </li>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    
 
 //targets for elements in page
     window.addEventListener("click",function(e) {
@@ -382,9 +481,24 @@ $.getJSON('/data/popular-items.json', (products)=> {
         } else if ( e.target.getAttribute('id') === "btn-col1-section-one") {
             console.log('dada')
             displaySectionCategoryServices()
-        } else if ( e.target.getAttribute('class') === "p-descr-list-popular-items"  || e.target.getAttribute('class') === "popular-items-image" ) {
-            console.log('hihihihihihi')
+        } else if ( e.target.getAttribute('class') === "popular-items-image" ) {
+            $titleRedirectPage.text( e.target.alt)
+            $spanSubtitleRedirectPage.text(e.target.alt)
+            $priceSpecificProduct.text(`$${e.target.id}`)
+            $mainSpecificProductImage.attr('src', '').attr('src', `${e.target.src}`)
+            quantitySpecificProductInput(e)
             displaySpecificProduct()
+            
+        } else if ( e.target.getAttribute('class') === 'p-descr-list-popular-items') {
+            $titleRedirectPage.text( e.target.textContent)
+            $spanSubtitleRedirectPage.text(e.target.textContent)
+            $priceSpecificProduct.text(`$${e.target.id}`)
+            console.log(typeof(parseInt(e.target.id)))
+            $mainSpecificProductImage.attr('src', '').attr('src', `${e.target.parentNode.id}`)
+            quantitySpecificProductInput(e)
+            displaySpecificProduct()
+            
+            
         } else if ( e.target.getAttribute('href') === '#osftheme') {
             displaySectionCategoryServices()
         } else if ( e.target.getAttribute('id') === 'shoppingcart') {
@@ -392,16 +506,54 @@ $.getJSON('/data/popular-items.json', (products)=> {
             $('.shopping-cart-items-added').show()
         }
     });
+
+
+//change specific product quantity and update price
     
+
+    let quantitySpecificProduct = 1
+    const $titleRedirectPage = $('#non-product-title')
+    const $priceSpecificProduct = $('#specific-product-price')
+    const $inputSpecificProductQuantity = $('#input-specific-product-quantity')
+    const $decrementInputSpecificProductQuantiy = $('#decrement-input-specific-product-quantity')
+    const $incrementInputSpecificProductQuantiy = $('#increment-input-specific-product-quantity')
+
+    function quantitySpecificProductInput(x) {
+        
+        $decrementInputSpecificProductQuantiy.on('click', ()=> {
+            if ( $inputSpecificProductQuantity.val() > 1) {
+                quantitySpecificProduct--
+                $inputSpecificProductQuantity.val(quantitySpecificProduct)
+                $priceSpecificProduct.text(`$${parseInt(x.target.id) * parseInt($inputSpecificProductQuantity.val() )}`)
+            }
+        })
+    
+        $incrementInputSpecificProductQuantiy.on('click', ()=> {
+            quantitySpecificProduct++
+            console.log(quantitySpecificProduct)
+            $inputSpecificProductQuantity.val(quantitySpecificProduct)
+            $priceSpecificProduct.text(`$${parseInt(x.target.id) * parseInt($inputSpecificProductQuantity.val() )}`)
+        })
+    }
+
+
+
+
+
+
+
+
 
     //Giving every li the error page href
     //1
-    const $links = $('li a')
+    const $links = $('.categoriest-footer-list a')
     $links.attr('href', '#non-product-404-id')
     //2
     const $ulNavLinks = $('.ul-nav li a')
     $ulNavLinks.attr('href', '#')
-    
+    //3
+    const $links2 = $('.services-products li a')
+    $links2.attr('href', '#non-product-404-id')
 
     //function to display standard home page
     function displayHomePage() {
@@ -425,7 +577,6 @@ $.getJSON('/data/popular-items.json', (products)=> {
         $btnMinimizeProducts.hide()
         $sectionShoppingCart.hide()
         displayPopularItems(8)
-    
     }
     
     //function to display the 404 page
@@ -435,8 +586,8 @@ $.getJSON('/data/popular-items.json', (products)=> {
         $sectionServicesProducts.hide()
         $btnServicesLinkNavbar.removeClass('style-services-link')
         $titleRedirectPage.text('404')
-        $hr1RedirectPage.css('background-color', 'gainsboro') 
-        $hr2RedirectPage.css('background-color','gainsboro')
+        $hr1RedirectPage.css({'background-color': 'gainsboro', 'width':'400px'}) 
+        $hr2RedirectPage.css({'background-color': 'gainsboro', 'width':'400px'})    
         $spanSubtitleRedirectPage.text('404')
         $sectionOops.show()
         $mainSection.hide()
@@ -478,8 +629,6 @@ $.getJSON('/data/popular-items.json', (products)=> {
     
     //function to display a specifig product 
     function displaySpecificProduct() {
-        $titleRedirectPage.text('Archi Desk Accesories Pen Cup')
-        $spanSubtitleRedirectPage.text(`Archi Desk Accesories Pen Cup`)
         $hr1RedirectPage.css({'background-color': 'gainsboro', 'width':'200px'}) 
         $hr2RedirectPage.css({'background-color': 'gainsboro', 'width':'200px'})    
         $sectionOpenWhenClick.show().css('padding-bottom', '0px')
@@ -528,8 +677,6 @@ $.getJSON('/data/popular-items.json', (products)=> {
 
 
 
-
-
 //SECTION COOKIES -> X to hide section , ACCEPT to add cookies in local storage until you delete cache
 const $sectionCookies = $('.section-cookies')
 const $closeCookies = $('#close-cookies')
@@ -556,9 +703,6 @@ $acceptCookies.on('click', ()=> {
 
 
 
-
-
-
 //TASK 7.1 MAXIMIZE FULL WIDTH FOR IMAGE
 const $btnFullDisplayImage = $('#maximize-product-image')
 const $btnNormalImage = $('#minimize-product-image')
@@ -581,7 +725,6 @@ $btnNormalImage.on('click', ()=> {
 
 
 
-
 //ACTIVE STATE FOR SELECTED PHOTO AND REPLACE THE MAIN PHOTO WITH THE SELECTED ONE
 const sectionSmallImagesSpecificProduct = document.querySelector('.section-specific-product-images')
 const smallImages = sectionSmallImagesSpecificProduct.getElementsByClassName('specific-product-small-image')
@@ -597,7 +740,6 @@ for ( let i = 0 ; i < smallImages.length; i ++) {
         $mainSpecificProductImage.attr('src', '').attr('src', `${smallImages[i].src}`)
     })
 }
-
 
 
 //DISPLAY SPECIFIC TAB FOR SPECIFIC SUBTITLE DESCRIPTION / ADDITIONAL INFORMATION / REVIEW(3)
@@ -627,3 +769,86 @@ function displayCurrentTab(x) {
 function selectCurrentTab(z) {
     displayCurrentTab(currentTabIndex = z)
 }
+
+
+
+
+
+//responsive layout
+//----------------
+
+
+$(window).resize(function() {
+    if ($(this).width() < 768) {
+        //burger button for mobile layout
+        const menuBtn = document.querySelector('.menu-burger');
+        const navbarBurger = document.querySelector('.ul-nav');
+        let menuIsOpen = false;
+
+
+        menuBtn.addEventListener('click', ()=> {
+            if(!menuIsOpen) {
+                menuBtn.classList.add('open');
+                menuIsOpen = true;
+                navbarBurger.style.display = 'flex';
+            } else {
+                menuBtn.classList.remove('open');
+                menuIsOpen = false;
+                navbarBurger.style.display = 'none';
+            }
+        })
+
+
+            //navbar, services-products (li) section toggle display hide/show when click
+        const $productsCategoriesTitle = $('#product-categories-title')
+        const $productsSaleTitle = $('#sale-title')
+        const $productsList = $('.products-list')
+        const $productsSaleList = $('.products-sale-list')
+
+        $productsList.hide()
+        $productsSaleList.hide()
+
+        $productsCategoriesTitle.on('click', ()=> {
+            $productsList.toggle(700)
+        })
+
+        $productsSaleTitle.on('click', ()=> {
+            $productsSaleList.toggle(700)
+        })
+
+
+
+        //footer sections toggle for display hide/show when click
+
+        const $contactFooterTitle = $('#contact-footer-title')
+        const $categoriestFooterTitle = $('#categoriest-footer-title')
+        const $aboutFooterTitle = $('#about-footer-title')
+
+        const $contactFooterList = $('.contact-footer-list')
+        const $categoriestFooterList = $('.categoriest-footer-list')
+        const $aboutFooterList = $('.about-footer-ul')
+
+        $contactFooterList.hide()
+        $categoriestFooterList.hide()
+        $aboutFooterList.hide()
+
+        $contactFooterTitle.on('click', ()=> {
+            $contactFooterList.toggle(500)
+        })
+        $categoriestFooterTitle.on('click', ()=> {
+            $categoriestFooterList.toggle(500)
+        })
+        $aboutFooterTitle.on('click', ()=> {
+            $aboutFooterList.toggle(500)
+        })
+
+    }
+
+    
+
+});
+
+
+
+
+

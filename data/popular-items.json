@@ -2,62 +2,74 @@
     {
         "src" : "/images/products/popular/product1.png",
         "productName" : "Cocktail Table Walnut | YES",
-        "productPrice": 100
+        "productPrice": 100,
+        "quantity": 1
     },
     {
         "src" : "/images/products/popular/product2.png",
         "productName" : "Apple Keyboard Smoke White ",
-        "productPrice": 200
+        "productPrice": 200,
+        "quantity": 1
     },
     {
         "src" : "/images/products/popular/product3.png",
         "productName" : "Tory Desk Calendar",
-        "productPrice": 300
+        "productPrice": 300,
+        "quantity": 1
     },
     {
         "src" : "/images/products/popular/product4.png",
         "productName" : "Oldstyle Mecanic Cronometre",
-        "productPrice": 400
+        "productPrice": 400,
+        "quantity": 1
     },
     {
         "src" : "/images/products/popular/product5.png",
         "productName" : "Hay - About A Lounge Chair AAL 93",
-        "productPrice": 500
+        "productPrice": 500,
+        "quantity": 1
     },
     {
         "src" : "/images/products/popular/product6.png",
         "productName" : "Lorem ipsum ala bala etc lorem impus",
-        "productPrice": 600
+        "productPrice": 600,
+        "quantity": 1
     },
     {
         "src" : "/images/products/popular/product7.png",
         "productName" : "Lorem ipsum ala bala etc lorem impus",
-        "productPrice": 700
+        "productPrice": 700,
+        "quantity": 1
     },
     {
         "src" : "/images/products/popular/product8.jpg",
         "productName" : "Device for finger amprent - Limited Edition",
-        "productPrice": 800
+        "productPrice": 800,
+        "quantity": 1
     },
     {
         "src" : "/images/products/popular/product9.png",
         "productName" : "Apple Watch 5 PRO",
-        "productPrice": 600
+        "productPrice": 600,
+        "quantity": 1
     },
     {
         "src" : "/images/products/popular/product10.jpg",
         "productName" : "Manometer - Pressure measurement",
-        "productPrice": 350
+        "productPrice": 350,
+        "quantity": 1
     },
     {
         "src" : "/images/products/popular/product11.png",
         "productName" : "DIOR Sundress",
-        "productPrice": 700
+        "productPrice": 700,
+        "quantity": 1
     },
     {
         "src" : "/images/products/popular/product12.png",
         "productName" : "Kristina Dam Oak Table With White Marble",
-        "productPrice": 400
+        "productPrice": 400,
+        "quantity": 1
     }
 ]
 
