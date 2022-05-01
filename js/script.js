@@ -164,24 +164,41 @@ $.getJSON('/data/popular-items.json', (products)=> {
             //dislaying the first 8 products only 
             $popularItemsList.append(
             `<li class="li-item-product-from-ul">
-            <img src="${products[i].src}" class="popular-items-image" alt="${products[i].productName}" id="${products[i].productPrice}">
-            <button class="add-product-to add-to-cart" id="add-product-to-cart"> <i class="fa-solid fa-plus"></i> </button>
-            <button class="add-product-to add-to-wishlist" id="add-product-to-wishlist"> <i class="fa-solid fa-heart"></i> </button>
-            <div class="list-popular-items-div-details" id="${products[i].src}">
-                <p class="p-descr-list-popular-items" id="${products[i].productPrice}">${products[i].productName}</p>
-                <p class="p-price-list-popular-items">$ ${products[i].productPrice}</p>
-            </div>
+                <img src="${products[i].src}" class="popular-items-image" alt="${products[i].productName}" id="${products[i].productPrice}">
+                <button class="add-product-to add-to-cart" id="add-product-to-cart"> <i class="fa-solid fa-plus"></i> </button>
+                <button class="add-product-to add-to-wishlist" id="add-product-to-wishlist"> <i class="fa-solid fa-heart"></i> </button>
+                <div class="list-popular-items-div-details" id="${products[i].src}">
+                    <p class="p-descr-list-popular-items" id="${products[i].productPrice}">${products[i].productName}</p>
+                    <p class="p-price-list-popular-items">$ ${products[i].productPrice}</p>
+                </div>
             </li>`);    
             
             let $pPrice = $('.p-price-list-popular-items')
             $pPrice.hover( 
                 function() {
-                    $(this).removeClass('p-price-list-popular-items').addClass('mario').html(`<span id="span1">${products[i].productPrice}</span> <span id="border"></span> <span>BUY NOW</span>`)
+                    $(this).removeClass('p-price-list-popular-items').addClass('mario').html(`<span id="span1">$${products[$(this).parent().parent().index()].productPrice}</span> <span id="border"></span> <span class="buy-now-from-product">BUY NOW</span>`)
+                    const $btnBuyNowFromProduct = $('.buy-now-from-product')
+
+                    $btnBuyNowFromProduct.on('click', ()=> {
+                        let currentIndex = $(this).parent().parent().index()
+
+                        //Look up
+                        cartProductsList.push( { src: products[currentIndex].src, productName: products[currentIndex].productName, productPrice: products[currentIndex].productPrice, quantity: products[currentIndex].quantity } )
+                        console.log(wishlistProductsList)
+
+                        let arrayCartNew = [...new Map(cartProductsList.map(item => [item.productName, item])).values()]
+                        //create unique array -
+                        console.log(arrayCartNew)
+                        $quantityCartProducts.html(arrayCartNew.length)
+                    })
                 }, 
                 function() {
-                    $(this).removeClass('mario').addClass('p-price-list-popular-items').html(`${products[i].productPrice}`)
+                    $(this).removeClass('mario').addClass('p-price-list-popular-items').html(`$${products[$(this).parent().parent().index()].productPrice}`)
                 }                
             )
+
+
+
             
 
             let $image = $('.popular-items-image')
@@ -189,23 +206,15 @@ $.getJSON('/data/popular-items.json', (products)=> {
             let $buttonsAddProducts = $('.add-product-to')
             $buttonsAddProducts.hide()
             $image.hover(
-                ()=>{ 
-                    showButtons()
-                }
+                ()=>{ showButtons() }
                 ,
-                ()=>{
-                    hideButtons()
-                }
+                ()=>{ hideButtons() }
             )
 
             $buttonsAddProducts.hover(
-                ()=>{ 
-                    showButtons()
-                }
+                ()=>{ showButtons() }
                 ,
-                ()=>{
-                    hideButtons()
-                }
+                ()=>{ hideButtons() }
             )
 
             function showButtons() {
@@ -264,9 +273,13 @@ $.getJSON('/data/popular-items.json', (products)=> {
                     </li>
                     `
                 }
+               
+               
+
+
+                
 
                 changeQuantityOfProductsAdded()
-
                 //create function that changes quantity
                 function changeQuantityOfProductsAdded() {
 
@@ -287,7 +300,7 @@ $.getJSON('/data/popular-items.json', (products)=> {
                             productAddedTotalPrice[i].textContent = ` $${cartInputProductQuantity[i].value * arrayCartNew[i].productPrice},00 `
                         })
                         //2
-                        decrementCartProductQuantity[i].addEventListener('click', ()=> {
+                        decrementCartProductQuantity[i].addEventListener('click', () => {
                             if (cartInputProductQuantity[i].value > 1) {
                                 cartInputProductQuantity[i].value--
                                 productAddedTotalPrice[i].textContent = ` $${cartInputProductQuantity[i].value * arrayCartNew[i].productPrice},00 `
@@ -303,7 +316,7 @@ $.getJSON('/data/popular-items.json', (products)=> {
 
                     let inputCartDelivery = document.querySelectorAll('.input-cart-delivery')
                     for ( let i = 0; i < inputCartDelivery.length; i++) {
-                        inputCartDelivery[i].addEventListener('click', ()=> {
+                        inputCartDelivery[i].addEventListener('click', () => {
                             if ( inputCartDelivery[i].checked ) {
                                 totalCartPrice = subtotalPrice + parseInt(inputCartDelivery[i].value)
                                 cartTotalPrice.textContent = `$${totalCartPrice}`
@@ -350,22 +363,36 @@ $.getJSON('/data/popular-items.json', (products)=> {
                     `
                 }
             })
+
+            
         }
+
+        
       
-
-
     }
+
+    removeProducts()
+    function removeProducts() {
+        const $removeProductFromCart = $('.cart-delete-item-added')
+        $removeProductFromCart.on('click', ()=> {
+            console.log($removeProductFromCart.length)
+            console
+        })
+    }
+
     //DISPLAY THE POPULAR ITEMS IN THE PAGE
     displayPopularItems(8)
     //CREATE BUTTON "LOAD MORE" TO DISPLAY 4 MORE PRODUCTS
     $btnLoadMoreProducts.on('click', ()=>{
         displayPopularItems(12)
+        changeLastItem()
         //---
         //CHANGING THE BUTTON LOAD MORE - > BUTTON MINIMIZE TO DISPLAY AGAIN ONLY 8 PRODUCTS
         $btnLoadMoreProducts.hide()
         $btnMinimizeProducts.show()
         $btnMinimizeProducts.on('click', ()=> {
             displayPopularItems(8)
+            changeLastItem()
             $btnMinimizeProducts.hide()
             $btnLoadMoreProducts.show()
         } )
@@ -407,9 +434,9 @@ $.getJSON('/data/popular-items.json', (products)=> {
         if ( n === 2 ) {
             $infoTextHomepage.css({'align-items': 'flex-end', 'margin-left': '0px', 'margin-right': '20px', 'text-align': 'right'})
         }
-        for ( let i = 0; i < bannerImages.length; i ++) {
-            imgHomepage.src = bannerImages[i]
-        }
+        // for ( let i = 0; i < bannerImages.length; i ++) {
+        //     // imgHomepage.src = bannerImages[i]
+        // }
         for ( let i = 0; i < dotsHomepage.length; i++) {
             dotsHomepage[i].className = dotsHomepage[i].className.replace('dot-active', '')
             dotsHomepage[i].addEventListener('click', ()=> {
@@ -513,6 +540,7 @@ $.getJSON('/data/popular-items.json', (products)=> {
         } else if ( e.target.getAttribute('href') === '#osftheme') {
             displaySectionCategoryServices()
         } else if ( e.target.getAttribute('id') === 'shoppingcart') {
+            removeProducts()
             displayShoppingCart()
             $('.shopping-cart-items-added').show()
         }

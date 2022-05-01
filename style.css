@@ -1585,28 +1585,6 @@ padding-bottom: 15px;
     font-weight: bold;
 }
 
-/* <div class="section-wishlist">
-<h2>WISHLIST PRODUCTS</h2>
-<ul class="wishlist-ul">
-    <li class="li-wishlist">
-        <img src="/images/products/popular/product3.png">
-        <p class="name-product-wishlist">name of the specific product</p>
-        <p class="price-product-wishlist">price</p>
-    </li>
-</ul>
-</div> */
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /* MEDIA QUERRY */
@@ -2300,8 +2278,38 @@ padding-bottom: 15px;
     }
 
 
+    /* WISHLIST SECTION */
 
+.section-wishlist {
+    background-color: #fdfdfd;
+    width: 75%;
+    border: 2px solid #333842;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 12px;
+    height: 50%;
+}
+#close-wishlist {
+    font-size: 22px;
+}
+.section-wishlist h2 {
+    font-size: 22px;
+    margin: 20px 0px;
+}
+.wishlist-ul {
+    width: 80%;
+    padding: 15px;
+}
 
+.name-product-wishlist {
+    font-size: 14px;
+    margin: 0px;
+}
+
+.price-product-wishlist {
+    font-size: 14px;
+}
 
 
 

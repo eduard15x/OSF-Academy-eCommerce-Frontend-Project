@@ -23,6 +23,7 @@
 -in the specific product update prices by quantity, display 0-100 characters in description, click read more - > display full description<br>
 -carousel slider for first section from main<br>
 -next-prev buttons for featured products section<br>
+-creating the wishlist section when you click on the link-icon<br>
 <br>
 <br>
 - some small adjustments to finish
