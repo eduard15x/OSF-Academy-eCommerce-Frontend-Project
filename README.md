@@ -27,4 +27,4 @@
 <br>
 - some small adjustments to finish
 + project by Precup Eduard, from 0 
-! html, css, javascript + jquery
++ html, css, javascript + jquery

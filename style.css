@@ -1522,11 +1522,79 @@ padding-bottom: 15px;
     color: #ffffff;
     font-weight: bold;
 }
-
 .menu-burger {
     display: none;
 }
 
+
+/* WISHLIST SECTION */
+
+.section-wishlist {
+    position: fixed;
+    top: 25%;
+    left: 50%;
+    transform: translate(-50%, 0);
+    background-color: #fdfdfd;
+    width: 40%;
+    border: 2px solid #333842;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-radius: 12px;
+    height: 50%;
+}
+#close-wishlist {
+    position: absolute;
+    right: 40px;
+    top: 20px;
+    font-size: 26px;
+    cursor: pointer;
+}
+.section-wishlist h2 {
+    font-size: 34px;
+    margin: 30px 0px;
+    font-family: 'Lato';
+    color: #333842;
+}
+.wishlist-ul {
+    width: 90%;
+    padding: 20px;
+    height: 70%;
+    overflow-y: scroll;
+}
+.li-wishlist {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid gainsboro;
+}
+
+.li-wishlist img {
+    width: 100px;
+}
+.name-product-wishlist {
+    font-size: 20px;
+    margin: 0px 20px;
+}
+
+.price-product-wishlist {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* <div class="section-wishlist">
+<h2>WISHLIST PRODUCTS</h2>
+<ul class="wishlist-ul">
+    <li class="li-wishlist">
+        <img src="/images/products/popular/product3.png">
+        <p class="name-product-wishlist">name of the specific product</p>
+        <p class="price-product-wishlist">price</p>
+    </li>
+</ul>
+</div> */
 
 
 
@@ -1961,24 +2029,16 @@ padding-bottom: 15px;
         height: auto;
     }
 
-
-    
-/* LAST ITEM FROM POPULAR UL */
-.li-last-product-div {
-    margin-top: 180px;
-    padding-right: 60px;
-    margin-right: 50px;
-}
-#last-popular-item-img {
-    height: 360px;
-    opacity: 1;
-}
-
-
-
-
-
-
+    /* LAST ITEM FROM POPULAR UL */
+    .li-last-product-div {
+        margin-top: 180px;
+        padding-right: 60px;
+        margin-right: 50px;
+    }
+    #last-popular-item-img {
+        height: 360px;
+        opacity: 1;
+    }
     #add-product-to-cart, #add-product-to-wishlist {
         width: 40px;
         height: 40px;

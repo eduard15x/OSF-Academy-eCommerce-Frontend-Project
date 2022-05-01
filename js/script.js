@@ -263,8 +263,8 @@ $.getJSON('/data/popular-items.json', (products)=> {
                         <button class="cart-delete-item-added">X</button>
                     </li>
                     `
-                    
                 }
+
                 changeQuantityOfProductsAdded()
 
                 //create function that changes quantity
@@ -313,20 +313,48 @@ $.getJSON('/data/popular-items.json', (products)=> {
                 }
             })
             //2---
+            
+            //display wishlist list
+            const $btnHeartNavbar = $('#wishlistIcon')
+            const $wishlistSection = $('.section-wishlist')
+            const $btnCloseWishlist = $('#close-wishlist')
+            const wishlistUl = document.querySelector('.wishlist-ul')
+
+            $wishlistSection.hide()
+
+            $btnHeartNavbar.on('click', ()=> {
+                $wishlistSection.show()
+            })
+
+            $btnCloseWishlist.on('click', ()=> {
+                $wishlistSection.hide()
+            })
+
             btnAddProductToWishlist[i].addEventListener('click', ()=> {
-                wishlistProductsList.push( { productName: products[i].productName, productPrice: products[i].productPrice } )
+                wishlistProductsList.push( { productName: products[i].productName, productPrice: products[i].productPrice, src: products[i].src } )
                 console.log(wishlistProductsList)
 
                 let arrayWishlistNew = [...new Map(wishlistProductsList.map(item => [item.productName, item])).values()]
                 console.log(arrayWishlistNew)
                 $quantityWishlistProducts.html(arrayWishlistNew.length)
+
+                wishlistUl.innerHTML = ''
+                for ( let i = 0 ; i < arrayWishlistNew.length; i++) {
+                    wishlistUl.innerHTML += 
+                    `
+                    <li class="li-wishlist">
+                        <img src="${arrayWishlistNew[i].src}" class="img-items-added">
+                        <p class="name-product-wishlist">${arrayWishlistNew[i].productName}</p>
+                        <p class="price-product-wishlist">$ ${arrayWishlistNew[i].productPrice}</p>
+                    </li>
+                    `
+                }
             })
         }
       
 
 
     }
-
     //DISPLAY THE POPULAR ITEMS IN THE PAGE
     displayPopularItems(8)
     //CREATE BUTTON "LOAD MORE" TO DISPLAY 4 MORE PRODUCTS
@@ -354,7 +382,6 @@ $.getJSON('/data/popular-items.json', (products)=> {
     const imgHomepage = document.querySelector('#image-section-home-page')
     const dotsHomepage = document.getElementsByClassName('dot-section-homepage')
     const $infoTextHomepage = $('.info-text-section-one-homepage')
-
 
     let slideIndexHomepage = 0
     showSlideHomepage(slideIndexHomepage)
@@ -394,8 +421,6 @@ $.getJSON('/data/popular-items.json', (products)=> {
 
 }
 
-
-
     //TASK 5.4 FEATURED PRODUCTS - CHANGE SLIDES WITH PREV/NEXT BUTTONS and AUTO CHANGE 
     const listFeaturedProducts = document.querySelector('.list-featured-products')
     const btnPrevFeaturedProducts = document.querySelector('#btn-prev-featured-products')
@@ -407,7 +432,6 @@ $.getJSON('/data/popular-items.json', (products)=> {
     displayFeaturedProducts(startFeaturedProduct,lengthForFeaturedProductCarousel)
 
     function displayFeaturedProducts(startFeaturedProduct, lengthForFeaturedProductCarousel) {
-
         for ( let i = startFeaturedProduct; i < lengthForFeaturedProductCarousel; i++) {    
             listFeaturedProducts.innerHTML += 
             `
@@ -419,7 +443,6 @@ $.getJSON('/data/popular-items.json', (products)=> {
             `
         }
     }
-
 
     //btn prev 
     btnPrevFeaturedProducts.addEventListener('click', ()=>{
@@ -442,7 +465,6 @@ $.getJSON('/data/popular-items.json', (products)=> {
         } else {
             startFeaturedProduct +=4;
             lengthForFeaturedProductCarousel = startFeaturedProduct + 4
-            
         }
         displayFeaturedProducts(startFeaturedProduct, lengthForFeaturedProductCarousel)
     })
@@ -461,8 +483,6 @@ $.getJSON('/data/popular-items.json', (products)=> {
         setTimeout(autoChangeSlides, 5000)
     }
     autoChangeSlides()
-    
-    
 
 //targets for elements in page
     window.addEventListener("click",function(e) {
@@ -498,8 +518,6 @@ $.getJSON('/data/popular-items.json', (products)=> {
         }
     });
 
-
-    
     
     let quantitySpecificProduct = 1
     const $titleRedirectPage = $('#non-product-title')
@@ -509,7 +527,6 @@ $.getJSON('/data/popular-items.json', (products)=> {
     const $incrementInputSpecificProductQuantiy = $('#increment-input-specific-product-quantity')
 
     function quantitySpecificProductInput(x) {
-        
         $decrementInputSpecificProductQuantiy.on('click', ()=> {
             if ( $inputSpecificProductQuantity.val() > 1) {
                 quantitySpecificProduct--
@@ -534,9 +551,6 @@ $.getJSON('/data/popular-items.json', (products)=> {
     readMore.addEventListener('click', ()=> {
         pDescr.textContent = paragraphDescription.substring(0, paragraphDescription.length)
     })
-
-
-
 
     //Giving every li the error page href
     //1
@@ -573,7 +587,6 @@ $.getJSON('/data/popular-items.json', (products)=> {
         displayPopularItems(8)
         changeLastItem()
     }
-    
     //function to display the 404 page
     function displaySection404Error() {
         console.log('da')
@@ -590,7 +603,6 @@ $.getJSON('/data/popular-items.json', (products)=> {
         $OSFThemeSlash.hide()
         $sectionShoppingCart.hide()
     }
-    
     //function to display the landing services page
     function displaySectionCategoryServices() {
         $titleRedirectPage.text('Services')
@@ -622,7 +634,6 @@ $.getJSON('/data/popular-items.json', (products)=> {
         })
         changeLastItem()
     }
-    
     //function to display a specifig product 
     function displaySpecificProduct() {
         $hr1RedirectPage.css({'background-color': 'gainsboro', 'width':'200px'}) 
@@ -648,8 +659,6 @@ $.getJSON('/data/popular-items.json', (products)=> {
         displayPopularItems(4)
     }
 
-
-
     function displayShoppingCart() {
         $sectionShoppingCart.show()
         $titleRedirectPage.text('SHOPPING CART')
@@ -669,7 +678,6 @@ $.getJSON('/data/popular-items.json', (products)=> {
     }
 
     changeLastItem()
-
     function changeLastItem() {
         $('.li-item-product-from-ul').last().html(
             `
@@ -682,7 +690,11 @@ $.getJSON('/data/popular-items.json', (products)=> {
         ).css({'background-color': '#ffffff', 'height': '360px' , 'background-image': 'linear-gradient(to top, #675b99 0%, #dc5987 100%)'}).addClass('hide-last-product')
         $('#last-popular-item-img').css({'height': '360px' ,'opacity': '0.1'})    
     }
+
     
+
+
+
 //change specific product quantity and update price
 //end
 });
