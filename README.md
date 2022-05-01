@@ -14,15 +14,15 @@
 -finish shopping cart section<br>
 -introducing some new images<br>
 -finished the home-page-design<br>
--update minicart
--update wishlist
--responsive layout
--display/hide password
--hover product show +/heart buttons to add items
--in the cart, update total prices and quantity for products
--in the specific product update prices by quantity, display 0-100 characters in description, click read more - > display full description
--carousel slider for first section from main
--next-prev buttons for featured products section
+-update minicart<br>
+-update wishlist<br>
+-responsive layout<br>
+-display/hide password<br>
+-hover product show +/heart buttons to add items<br>
+-in the cart, update total prices and quantity for products<br>
+-in the specific product update prices by quantity, display 0-100 characters in description, click read more - > display full description<br>
+-carousel slider for first section from main<br>
+-next-prev buttons for featured products section<br>
 <br>
 <br>
 - some small adjustments to finish
