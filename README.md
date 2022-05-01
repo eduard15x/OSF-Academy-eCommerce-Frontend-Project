@@ -12,19 +12,19 @@
 -finish specific product section<br>
 -finish category products section<br>
 -finish shopping cart section<br>
-<br>
 -introducing some new images<br>
 -finished the home-page-design<br>
-
-
+-update minicart
+-update wishlist
+-responsive layout
+-display/hide password
+-hover product show +/heart buttons to add items
+-in the cart, update total prices and quantity for products
+-in the specific product update prices by quantity, display 0-100 characters in description, click read more - > display full description
+-carousel slider for first section from main
+-next-prev buttons for featured products section
 <br>
 <br>
-<strong>HOVER OVER A PRODUCT SHOWS ADD PRODUCT IN CART OR WISHLIST<br>
-<br>
-task - carousel slider for first section from main<br> 
-task - next-prev buttons for featured products section<br>
-task - create mobile / tablet version<br>
-
-
-task - AJAX request<br>
-task - try to make breakpoint in media querries for a responsive layout
+- some small adjustments to finish
++ project by Precup Eduard, from 0 
+! html, css, javascript + jquery
