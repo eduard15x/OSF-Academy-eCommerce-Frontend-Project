@@ -84,7 +84,7 @@
                 <label for="email">Email</label>
                 <input type="email" name="email" id="form-input-email">
                 <label for="password">Password <span id="forget-password">forget password</span> </label>
-                <input type="password" name="password" id="form-input-password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[#?!@$%^&*-\]\[]).{6,}" title="Password must contain at least 6 characters length, 1 number, 1 uppercase letter and 1 special character(symbol)" required>
+                <input type="password" class="password" name="password" id="form-input-password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[#?!@$%^&*-\]\[]).{6,}" title="Password must contain at least 6 characters length, 1 number, 1 uppercase letter and 1 special character(symbol)" required>
                 <p><i class="far fa-eye" id="togglePassword" class="password"></i></p>
             </div>
             <button>LOGIN</button>
@@ -198,10 +198,9 @@
                         <button>ADD TO CART</button>
                     </div>
 
-                    <p id="specific-product-descr">Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore Beatae vitae dicta sunt explicabo. 
-                        Nemo enim ipsam voluptatem quia voluptas</p>
+                    <p id="specific-product-descr"><!--JavaScript-->/p>
 
-                    <p id="specific-product-readmore"><a>Read more</a></p>
+                    <p id="specific-product-readmore"><a id="readmore-link">Read more</a></p>
 
                     <div class="section-specific-products-icons">
                         <p>Share</p>

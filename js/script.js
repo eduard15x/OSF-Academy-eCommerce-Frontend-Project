@@ -69,26 +69,17 @@ $userLoginIcon.on('click', ()=> {
 $forgetPassword.on('click', ()=> {
     $formInputPassword.val('')
 })
-
-//DONT KNOW WHY THIS IS NOT WORKING !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-// $togglePassword.click(function() {
-//     if( type === 'password') {
-//         $formInputPassword.attr('type', 'text')
-//     } else {
-//         $formInputPassword.attr('type', 'password')
-//     }
-// })
-
-
-$togglePassword.click(function(){
-    if( $(this).hasClass('password') ) {
+//toggle PASSWORD
+$togglePassword.on('click', ()=> {
+    if( $formInputPassword.attr('type') === 'password' ) {
         $formInputPassword.attr('type', 'text')
-        $(this).removeClass('password').addClass('text')
-    } else if ( $(this).hasClass('text') ) {
+        console.log('type - text')
+    } else {
         $formInputPassword.attr('type', 'password')
-        $(this).removeClass('text').addClass('password')
+        console.log('type - password')
     }
 })
+
 
 //Making the p with no account displayng a new register form when clicked
 $createAccount.click(()=>{
@@ -189,8 +180,9 @@ $.getJSON('/data/popular-items.json', (products)=> {
                 }, 
                 function() {
                     $(this).removeClass('mario').addClass('p-price-list-popular-items').html(`${products[i].productPrice}`)
-                }
+                }                
             )
+            
 
             let $image = $('.popular-items-image')
             let $detailsProduct = $('.list-popular-items-div-details')
@@ -228,6 +220,9 @@ $.getJSON('/data/popular-items.json', (products)=> {
                 $detailsProduct.css('opacity', '1')
             }
         })
+        
+        
+
 
         //---------------
         const btnAddProductToCart = document.getElementsByClassName('add-to-cart')
@@ -327,10 +322,7 @@ $.getJSON('/data/popular-items.json', (products)=> {
                 $quantityWishlistProducts.html(arrayWishlistNew.length)
             })
         }
-
-
-
-
+      
 
 
     }
@@ -496,8 +488,7 @@ $.getJSON('/data/popular-items.json', (products)=> {
             console.log(typeof(parseInt(e.target.id)))
             $mainSpecificProductImage.attr('src', '').attr('src', `${e.target.parentNode.id}`)
             quantitySpecificProductInput(e)
-            displaySpecificProduct()
-            
+            displaySpecificProduct()   
             
         } else if ( e.target.getAttribute('href') === '#osftheme') {
             displaySectionCategoryServices()
@@ -508,9 +499,8 @@ $.getJSON('/data/popular-items.json', (products)=> {
     });
 
 
-//change specific product quantity and update price
     
-
+    
     let quantitySpecificProduct = 1
     const $titleRedirectPage = $('#non-product-title')
     const $priceSpecificProduct = $('#specific-product-price')
@@ -535,11 +525,15 @@ $.getJSON('/data/popular-items.json', (products)=> {
             $priceSpecificProduct.text(`$${parseInt(x.target.id) * parseInt($inputSpecificProductQuantity.val() )}`)
         })
     }
+//add function in section specific-product for 'read more' link when click to display full description and not only 100 characters
+    const paragraphDescription = 'Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore Beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas'
+    const pDescr = document.querySelector('#specific-product-descr')
+    const readMore = document.querySelector('#readmore-link')
+    pDescr.textContent = paragraphDescription.substring(0, 100)
 
-
-
-
-
+    readMore.addEventListener('click', ()=> {
+        pDescr.textContent = paragraphDescription.substring(0, paragraphDescription.length)
+    })
 
 
 
@@ -577,6 +571,7 @@ $.getJSON('/data/popular-items.json', (products)=> {
         $btnMinimizeProducts.hide()
         $sectionShoppingCart.hide()
         displayPopularItems(8)
+        changeLastItem()
     }
     
     //function to display the 404 page
@@ -625,6 +620,7 @@ $.getJSON('/data/popular-items.json', (products)=> {
             $btnMinimizeProducts.hide()
             $btnLoadMoreProducts.show()
         })
+        changeLastItem()
     }
     
     //function to display a specifig product 
@@ -671,10 +667,25 @@ $.getJSON('/data/popular-items.json', (products)=> {
         $OSFThemeSlash.hide()  
         $sectionSpecificProducts.hide()
     }
+
+    changeLastItem()
+
+    function changeLastItem() {
+        $('.li-item-product-from-ul').last().html(
+            `
+            <img src="/images/products/popular/product3.png" id="last-popular-item-img">
+            <div class="li-last-product-div">
+                <p id="last-item-p1">My dragons are misbehaving again. Unbelieveable!</p>
+                <p id="last-item-p2"> <span id="span-last-item-p2"> <i class="fa-solid fa-user-check"></i></span>5H AGO</p>
+            </div>
+            `
+        ).css({'background-color': '#ffffff', 'height': '360px' , 'background-image': 'linear-gradient(to top, #675b99 0%, #dc5987 100%)'}).addClass('hide-last-product')
+        $('#last-popular-item-img').css({'height': '360px' ,'opacity': '0.1'})    
+    }
+    
+//change specific product quantity and update price
 //end
 });
-
-
 
 
 //SECTION COOKIES -> X to hide section , ACCEPT to add cookies in local storage until you delete cache
@@ -701,8 +712,6 @@ $acceptCookies.on('click', ()=> {
 })
 
 
-
-
 //TASK 7.1 MAXIMIZE FULL WIDTH FOR IMAGE
 const $btnFullDisplayImage = $('#maximize-product-image')
 const $btnNormalImage = $('#minimize-product-image')
@@ -721,8 +730,6 @@ $btnNormalImage.on('click', ()=> {
     $btnFullDisplayImage.show()
     $mainSpecificProductImage.css({'width': '578px', 'height': '526px', 'position': 'relative', 'padding': '0px', 'z-index': '0'})
 })
-
-
 
 
 //ACTIVE STATE FOR SELECTED PHOTO AND REPLACE THE MAIN PHOTO WITH THE SELECTED ONE
@@ -779,12 +786,12 @@ function selectCurrentTab(z) {
 
 
 $(window).resize(function() {
+
     if ($(this).width() < 768) {
         //burger button for mobile layout
         const menuBtn = document.querySelector('.menu-burger');
         const navbarBurger = document.querySelector('.ul-nav');
         let menuIsOpen = false;
-
 
         menuBtn.addEventListener('click', ()=> {
             if(!menuIsOpen) {
@@ -797,9 +804,7 @@ $(window).resize(function() {
                 navbarBurger.style.display = 'none';
             }
         })
-
-
-            //navbar, services-products (li) section toggle display hide/show when click
+        //navbar, services-products (li) section toggle display hide/show when click
         const $productsCategoriesTitle = $('#product-categories-title')
         const $productsSaleTitle = $('#sale-title')
         const $productsList = $('.products-list')
@@ -816,10 +821,7 @@ $(window).resize(function() {
             $productsSaleList.toggle(700)
         })
 
-
-
         //footer sections toggle for display hide/show when click
-
         const $contactFooterTitle = $('#contact-footer-title')
         const $categoriestFooterTitle = $('#categoriest-footer-title')
         const $aboutFooterTitle = $('#about-footer-title')
@@ -842,6 +844,7 @@ $(window).resize(function() {
             $aboutFooterList.toggle(500)
         })
 
+        $('.li-item-product-from-ul').last().hide()
     }
 
     

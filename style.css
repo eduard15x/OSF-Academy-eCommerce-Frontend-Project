@@ -637,6 +637,7 @@ main {
     font-weight: bold;
 }
 
+
 /* SECTION TWO */
 .section-two-popular-items {
     display: flex;
@@ -830,6 +831,32 @@ main {
     text-align: center;
     margin-bottom: 15px;
 }
+
+/* LAST ITEM FROM POPULAR UL */
+.li-last-product-div {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    align-items: flex-start;
+    margin-top: 210px;
+    color: white;
+}
+#last-item-p1 {
+    width: 131px;
+    margin-bottom: 25px;
+    line-height: 24px;
+    margin-right: 100px;
+}
+#last-item-p2 {
+    font-weight: bold;
+    margin-left: 20px;
+}
+#span-last-item-p2 {
+    font-weight: bold;
+    color:#139840;
+    margin-right: 15px;
+    font-size: 22px;
+}
 /* Only when hover over price */
 .mario {
     display: flex;
@@ -871,7 +898,6 @@ main {
     position: absolute;
     margin-left: 140px;
 }
-
 
 /* SECTION THREE - BANNER */
 .section-three-banner {
@@ -1935,16 +1961,29 @@ padding-bottom: 15px;
         height: auto;
     }
 
-       
+
+    
+/* LAST ITEM FROM POPULAR UL */
+.li-last-product-div {
+    margin-top: 180px;
+    padding-right: 60px;
+    margin-right: 50px;
+}
+#last-popular-item-img {
+    height: 360px;
+    opacity: 1;
+}
+
+
+
+
+
 
     #add-product-to-cart, #add-product-to-wishlist {
         width: 40px;
         height: 40px;
         font-size: 22px;
     }
-
-
-
     .btn-section-two {
         display: none;
     }
