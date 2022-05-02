@@ -237,10 +237,7 @@ $.getJSON('/data/popular-items.json', (products)=> {
         const btnAddProductToCart = document.getElementsByClassName('add-to-cart')
         const btnAddProductToWishlist = document.getElementsByClassName('add-to-wishlist')
        
-        const $quantityWishlistProducts = $('#quantity-wishlist-products')
-        const $quantityCartProducts = $('#quantity-cart-products')
-        $quantityWishlistProducts.html(`${wishlistProductsList.length}`)
-        $quantityCartProducts.html(`${cartProductsList.length}`)
+        
             
 
         const ulShoppingCartAdded = document.querySelector('.shopping-cart-items-added')
@@ -272,8 +269,13 @@ $.getJSON('/data/popular-items.json', (products)=> {
                         <button class="cart-delete-item-added">X</button>
                     </li>
                     `
+
+                    
+                    
                 }
-               
+
+
+                
                
 
 
@@ -368,17 +370,33 @@ $.getJSON('/data/popular-items.json', (products)=> {
         }
 
         
+
+        
       
     }
 
-    removeProducts()
-    function removeProducts() {
-        const $removeProductFromCart = $('.cart-delete-item-added')
-        $removeProductFromCart.on('click', ()=> {
-            console.log($removeProductFromCart.length)
-            console
-        })
+
+    const $quantityWishlistProducts = $('#quantity-wishlist-products')
+    const $quantityCartProducts = $('#quantity-cart-products')
+    $quantityWishlistProducts.html(`${wishlistProductsList.length}`)
+    $quantityCartProducts.html(`${cartProductsList.length}`)
+
+
+    function removeBtn() {
+        const btnRemoveProducts = document.querySelectorAll('.cart-delete-item-added')
+        const btnRemoveProduct = Array.from(btnRemoveProducts)
+        for ( let i = 0; i < btnRemoveProduct.length; i++) {
+            btnRemoveProduct[i].addEventListener('click', (e)=> {
+                e.target.parentElement.remove()
+                let indexOfBtn = btnRemoveProduct.indexOf(btnRemoveProduct[i])
+                btnRemoveProduct.splice(indexOfBtn, 1)
+                $quantityCartProducts.html(btnRemoveProduct.length)
+            })
+            
+        }
     }
+    
+    
 
     //DISPLAY THE POPULAR ITEMS IN THE PAGE
     displayPopularItems(8)
@@ -540,8 +558,8 @@ $.getJSON('/data/popular-items.json', (products)=> {
         } else if ( e.target.getAttribute('href') === '#osftheme') {
             displaySectionCategoryServices()
         } else if ( e.target.getAttribute('id') === 'shoppingcart') {
-            removeProducts()
             displayShoppingCart()
+            removeBtn()
             $('.shopping-cart-items-added').show()
         }
     });
@@ -723,6 +741,38 @@ $.getJSON('/data/popular-items.json', (products)=> {
 
 
 
+    //footer sections toggle for display hide/show when click
+    const $contactFooterTitle = $('#contact-footer-title')
+    const $categoriestFooterTitle = $('#categoriest-footer-title')
+    const $aboutFooterTitle = $('#about-footer-title')
+
+    const $contactFooterList = $('.contact-footer-list')
+    const $categoriestFooterList = $('.categoriest-footer-list')
+    const $aboutFooterList = $('.about-footer-ul')
+
+
+    if ($(window).width() < 768) {
+        $contactFooterList.show()
+        $categoriestFooterList.hide()
+        $aboutFooterList.hide()
+
+        $contactFooterTitle.on('click', ()=> {
+            $contactFooterList.toggle(500)
+        })
+        $categoriestFooterTitle.on('click', ()=> {
+            $categoriestFooterList.toggle(500)
+        })
+        $aboutFooterTitle.on('click', ()=> {
+            $aboutFooterList.toggle(500)
+        })
+
+        $('.li-item-product-from-ul').last().hide()
+        displayPopularItems(1)
+    }
+
+
+
+
 //change specific product quantity and update price
 //end
 });
@@ -824,72 +874,41 @@ function selectCurrentTab(z) {
 //responsive layout
 //----------------
 
+//burger button for mobile layout
+const menuBtn = document.querySelector('.menu-burger');
+const navbarBurger = document.querySelector('.ul-nav');
+let menuIsOpen = false;
 
-$(window).resize(function() {
-
-    if ($(this).width() < 768) {
-        //burger button for mobile layout
-        const menuBtn = document.querySelector('.menu-burger');
-        const navbarBurger = document.querySelector('.ul-nav');
-        let menuIsOpen = false;
-
-        menuBtn.addEventListener('click', ()=> {
-            if(!menuIsOpen) {
-                menuBtn.classList.add('open');
-                menuIsOpen = true;
-                navbarBurger.style.display = 'flex';
-            } else {
-                menuBtn.classList.remove('open');
-                menuIsOpen = false;
-                navbarBurger.style.display = 'none';
-            }
-        })
-        //navbar, services-products (li) section toggle display hide/show when click
-        const $productsCategoriesTitle = $('#product-categories-title')
-        const $productsSaleTitle = $('#sale-title')
-        const $productsList = $('.products-list')
-        const $productsSaleList = $('.products-sale-list')
-
-        $productsList.hide()
-        $productsSaleList.hide()
-
-        $productsCategoriesTitle.on('click', ()=> {
-            $productsList.toggle(700)
-        })
-
-        $productsSaleTitle.on('click', ()=> {
-            $productsSaleList.toggle(700)
-        })
-
-        //footer sections toggle for display hide/show when click
-        const $contactFooterTitle = $('#contact-footer-title')
-        const $categoriestFooterTitle = $('#categoriest-footer-title')
-        const $aboutFooterTitle = $('#about-footer-title')
-
-        const $contactFooterList = $('.contact-footer-list')
-        const $categoriestFooterList = $('.categoriest-footer-list')
-        const $aboutFooterList = $('.about-footer-ul')
-
-        $contactFooterList.hide()
-        $categoriestFooterList.hide()
-        $aboutFooterList.hide()
-
-        $contactFooterTitle.on('click', ()=> {
-            $contactFooterList.toggle(500)
-        })
-        $categoriestFooterTitle.on('click', ()=> {
-            $categoriestFooterList.toggle(500)
-        })
-        $aboutFooterTitle.on('click', ()=> {
-            $aboutFooterList.toggle(500)
-        })
-
-        $('.li-item-product-from-ul').last().hide()
+menuBtn.addEventListener('click', ()=> {
+    if(!menuIsOpen) {
+        menuBtn.classList.add('open');
+        menuIsOpen = true;
+        navbarBurger.style.display = 'flex';
+    } else {
+        menuBtn.classList.remove('open');
+        menuIsOpen = false;
+        navbarBurger.style.display = 'none';
     }
+})
+//navbar, services-products (li) section toggle display hide/show when click
+const $productsCategoriesTitle = $('#product-categories-title')
+const $productsSaleTitle = $('#sale-title')
+const $productsList = $('.products-list')
+const $productsSaleList = $('.products-sale-list')
 
-    
+$productsList.hide()
+$productsSaleList.hide()
 
-});
+$productsCategoriesTitle.on('click', ()=> {
+    $productsList.toggle(700)
+})
+
+$productsSaleTitle.on('click', ()=> {
+    $productsSaleList.toggle(700)
+})
+
+
+
 
 
 

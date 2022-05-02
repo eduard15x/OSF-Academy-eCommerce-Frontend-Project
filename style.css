@@ -353,7 +353,7 @@ a {
     align-items: center;
 }
 .form-create-account-box .check-policy label {
-    margin-left: 15px;
+    margin:0px 0px 0px 15px;
 } 
 
 .form-create-account-box div label {
